@@ -21,6 +21,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 
 gem 'slim-rails'
+gem 'russian'
+gem 'inherited_resources'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
@@ -30,7 +32,15 @@ gem 'spring', group: :development
 
 
 group :development, :test do
+  gem 'minitest'
   gem 'rspec-rails'
-  gem 'shoulda-matchers'
+  gem 'pry-rails'
+  gem 'pry-plus'
 end
 
+group :test do
+  gem 'shoulda-matchers'
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'capybara-webkit'
+end

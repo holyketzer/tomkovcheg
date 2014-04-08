@@ -1,0 +1,20 @@
+ru:
+  helpers:
+    links:
+      new: 'Создать'
+      save: 'Сохранить'
+      edit: 'Изменить'
+      destroy: 'Удалить'
+      confirm: 'Вы уверены?'
+      cancel: 'Отмена'
+      back: 'Назад'
+      upload_image: 'Загрузить изображение'
+  categories:
+    index:
+      title: 'Категории'
+  activerecord:
+    attributes:
+      category:
+        title: 'Название'
+        description: 'Описание'
+        priority: 'Приоритет'

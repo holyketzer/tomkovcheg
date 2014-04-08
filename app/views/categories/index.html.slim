@@ -1,0 +1,26 @@
+- model_class = Category
+div.page-header
+  h1 = t '.title'
+
+table.table.table-striped
+  thead.list-header
+    tr
+      th = model_class.human_attribute_name(:priority)
+      th = model_class.human_attribute_name(:title)
+      th = model_class.human_attribute_name(:description)
+
+  tbody.list
+    - @categories.each do |category|
+      tr.list-item id = "category-#{category.id}"
+        td = category.priority
+        td = category.title
+        td = category.description
+        / td = link_to 'Show', category
+        / td = link_to 'Edit', edit_category_path(category)
+        / td = link_to 'Destroy', category, data: {:confirm => 'Are you sure?'}, :method => :delete
+        td
+          = link_to t('helpers.links.edit'), edit_category_path(category), class: 'btn btn-mini'
+          '
+          = link_to t('helpers.links.destroy'), category_path(category), method: :delete, data: { confirm: t('helpers.links.confirm') }, class: 'btn btn-mini btn-danger'
+
+= link_to t('helpers.links.new'), new_category_path, class: 'btn btn-primary'
