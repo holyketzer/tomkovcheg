@@ -1,6 +1,24 @@
-p#notice = notice
+- model_class = Category
+div.page-header
+  h1 = t '.title'
 
+div id="category-#{@category.id}"
+  p
+    strong = model_class.human_attribute_name(:title) + ':'
+    br
+    = @category.title
+  p
+    strong = model_class.human_attribute_name(:description) + ':'
+    br
+    = @category.description
+  p
+    strong= model_class.human_attribute_name(:priority) + ':'
+    br
+    = @category.priority
 
-= link_to 'Edit', edit_category_path(@category)
-'|
-= link_to 'Back', categories_path
+.form-actions
+  = link_to t('helpers.links.back'), categories_path, class: 'btn'
+  '
+  = link_to t('helpers.links.edit'), edit_category_path(@category), class: 'btn'
+  '
+  = link_to t('helpers.links.destroy'), category_path(@category), method: 'delete', data: { confirm: t('helpers.links.confirm') }, class: 'btn btn-danger'

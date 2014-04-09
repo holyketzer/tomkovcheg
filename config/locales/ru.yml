@@ -12,9 +12,18 @@ ru:
   categories:
     index:
       title: 'Категории'
+    new:
+      title: 'Новая категория'
+    edit:
+      title: 'Редактирование категории'
+    show:
+      title: 'Категория'
   activerecord:
     attributes:
       category:
         title: 'Название'
         description: 'Описание'
         priority: 'Приоритет'
+    successful:
+      messages:
+        category_saved: 'Категория сохранена'
