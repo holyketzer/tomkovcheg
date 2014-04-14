@@ -8,5 +8,6 @@ describe Category do
   end
 
   describe "associations" do
+    it { should have_many(:articles) }
   end
 end
