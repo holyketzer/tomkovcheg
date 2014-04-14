@@ -13,7 +13,7 @@ table.table.table-striped
     - @categories.each do |category|
       tr.list-item id = "category-#{category.id}"
         td = category.priority
-        td = category.title
+        td = link_to category.title, category
         td = category.description
         td
           = link_to t('helpers.links.edit'), edit_category_path(category), class: 'btn btn-mini'
