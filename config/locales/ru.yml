@@ -9,6 +9,9 @@ ru:
       cancel: 'Отмена'
       back: 'Назад'
       upload_image: 'Загрузить изображение'
+  articles:
+    index:
+      title: 'Управление статьями'
   categories:
     index:
       title: 'Категории'

@@ -1,0 +1,18 @@
+- model_class = Article
+div.page-header
+  h1 = t '.title'
+
+
+.articles
+  - @articles.each do |article|
+    .list-item id = "article-#{article.id}"
+      .header = link_to article.title, article
+      .area
+        .smalloffset = article.created_at
+        .smalloffset = article.abstract
+        .smalloffset
+          = link_to t('helpers.links.edit'), edit_article_path(article), class: 'btn btn-mini'
+          '
+          = link_to t('helpers.links.destroy'), article_path(article), method: :delete, data: { confirm: t('helpers.links.confirm') }, class: 'btn btn-mini btn-danger'
+
+= link_to t('helpers.links.new'), new_article_path, class: 'btn btn-primary'

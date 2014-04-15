@@ -4,4 +4,12 @@ FactoryGirl.define do
     description 'Описание категории'
     priority 1
   end
+
+  factory :article do
+    sequence(:title) { |n| "Статья-№#{n}" }
+    abstract 'Краткое содержание'
+    body 'Полный текст'
+    published true
+    category
+  end
 end
