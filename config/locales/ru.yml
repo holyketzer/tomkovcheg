@@ -12,6 +12,10 @@ ru:
   articles:
     index:
       title: 'Управление статьями'
+    new:
+      title: 'Новая статья'
+    edit:
+      title: 'Редактирование статьи'
   categories:
     index:
       title: 'Категории'
@@ -23,10 +27,16 @@ ru:
       title: 'Категория'
   activerecord:
     attributes:
+      article:
+        title: 'Заголовок'
+        abstract: 'Краткое содержание'
+        body: 'Статья'
+        category_id: 'Категория'
       category:
         title: 'Название'
         description: 'Описание'
         priority: 'Приоритет'
     successful:
       messages:
+        article_saved: 'Статья сохранена'
         category_saved: 'Категория сохранена'

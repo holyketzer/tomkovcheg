@@ -15,6 +15,6 @@ class CategoriesController < InheritedResources::Base
 
   private
     def build_resource_params
-    [params.fetch(:category, {}).permit(:title, :description, :priority)]
-  end
+      [params.fetch(:category, {}).permit(:title, :description, :priority)]
+    end
 end

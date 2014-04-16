@@ -34,6 +34,7 @@ gem 'spring', group: :development
 
 
 group :development, :test do
+  gem 'launchy'
   gem 'minitest'
   gem 'rspec-rails'
   gem 'pry-rails'
