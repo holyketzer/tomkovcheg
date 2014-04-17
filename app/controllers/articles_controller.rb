@@ -1,6 +1,10 @@
 class ArticlesController < InheritedResources::Base
   respond_to :html
 
+  def index
+    @articles = Article.active
+  end
+
   def create
     create!(notice: t('activerecord.successful.messages.article_saved'))
   end
