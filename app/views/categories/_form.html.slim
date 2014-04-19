@@ -1,17 +1,7 @@
-= form_for @category, html: { class: 'form-horizontal' } do |f|
-  = render 'shared/validation_errors', resource: @category
-  .control-group
-    = f.label :title, class: 'control-label'
-    .controls
-      = f.text_field :title, class: 'text_field'
-  .control-group
-    = f.label :description, class: 'control-label'
-    .controls
-      = f.text_field :description, class: 'text_field'
-  .control-group
-    = f.label :priority, class: 'control-label'
-    .controls
-      = f.number_field :priority, class: 'text_field'
+= simple_form_for @category, html: { class: 'form-horizontal' } do |f|
+  = f.input :title
+  = f.input :description
+  = f.input :priority
 
   .form-actions
     = f.submit t('helpers.links.save'), class: 'btn btn-primary'

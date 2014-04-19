@@ -1,12 +1,10 @@
 - model_class = Article
-div.page-header
-  h1 = t '.title'
-
 div id="article-#{@article.id}"
+  div.page-header
+    h1 = @article.title
+
   .header
     = @article.category.title
-    br
-    = @article.title
   .area
     = @article.body
   .area
