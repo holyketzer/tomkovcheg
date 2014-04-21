@@ -26,6 +26,8 @@ gem 'slim-rails'
 gem 'russian'
 gem 'inherited_resources'
 gem 'simple_form'
+gem 'carrierwave'
+gem 'mini_magick' # ensure that imagemagick is installed: 'sudo apt-get install imagemagick'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc

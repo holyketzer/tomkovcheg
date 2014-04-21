@@ -3,4 +3,5 @@ class Category < ActiveRecord::Base
   validates :title, uniqueness: { case_sensitive: false }
 
   has_many :articles
+  has_many :images, as: :imageable
 end

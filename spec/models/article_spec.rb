@@ -9,5 +9,6 @@ describe Article do
 
   describe "associations" do
     it { should belong_to(:category) }
+    it { should have_many(:images) }
   end
 end

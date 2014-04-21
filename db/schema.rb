@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140414194747) do
+ActiveRecord::Schema.define(version: 20140421192617) do
 
   create_table "articles", force: true do |t|
     t.integer  "category_id"
@@ -36,5 +36,14 @@ ActiveRecord::Schema.define(version: 20140414194747) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "images", force: true do |t|
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "images", ["imageable_id", "imageable_type"], name: "index_images_on_imageable_id_and_imageable_type"
 
 end
