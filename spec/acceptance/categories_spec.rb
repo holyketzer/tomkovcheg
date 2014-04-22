@@ -49,10 +49,10 @@ feature 'Admin can manage categories', %q{
     expect(page).to have_field 'Описание', with: category.description
     expect(page).to have_field 'Приоритет', with: category.priority
 
-    fill_fields_for new_category
+    fill_fields_for new_category, 'spec/support/images/another image.jpg'
     expect { click_on 'Сохранить' }.to change(Category, :count).by(0)
 
-    expect_category_page Category.find(category.id)
+    expect_category_page Category.find(category.id), { with_image: true }
     expect(page).to have_content 'Категория сохранена'
   end
 

@@ -13,4 +13,12 @@ FactoryGirl.define do
     published true
     category
   end
+
+  factory :image do
+    source File.open(File.join(Rails.root, 'spec/support/images/tiger.jpg'))
+
+    factory :new_image do
+      source File.open(File.join(Rails.root, 'spec/support/images/another image.jpg'))
+    end
+  end
 end

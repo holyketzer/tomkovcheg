@@ -6,6 +6,10 @@ class CategoriesController < InheritedResources::Base
     @category.build_image
   end
 
+  def edit
+    edit! { @category.build_image unless @category.image }
+  end
+
   def index
     @categories = Category.order(:priority)
   end

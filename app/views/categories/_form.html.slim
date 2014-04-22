@@ -2,10 +2,11 @@
   = f.input :title
   = f.input :description
   = f.input :priority
-  .control-group
-    = f.label :image
-    .controls
-      = image_tag @category.image.thumb_url if @category.image
+  - if @category.image
+    .control-group
+      = f.label :image
+      .controls
+        = image_tag @category.image.thumb_url
   = f.simple_fields_for :image do |i|
     = i.input :source, as: :file
 
