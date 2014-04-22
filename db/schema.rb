@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20140421192617) do
   create_table "images", force: true do |t|
     t.integer  "imageable_id"
     t.string   "imageable_type"
+    t.string   "source"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

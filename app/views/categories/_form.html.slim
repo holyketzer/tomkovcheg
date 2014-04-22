@@ -1,7 +1,13 @@
-= simple_form_for @category, html: { class: 'form-horizontal' } do |f|
+= simple_form_for @category, html: { class: 'form-horizontal', multipart: true } do |f|
   = f.input :title
   = f.input :description
   = f.input :priority
+  .control-group
+    = f.label :image
+    .controls
+      = image_tag @category.image.thumb_url if @category.image
+  = f.simple_fields_for :image do |i|
+    = i.input :source, as: :file
 
   .form-actions
     = f.submit t('helpers.links.save'), class: 'btn btn-primary'

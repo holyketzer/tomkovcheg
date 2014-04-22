@@ -33,10 +33,10 @@ feature 'Admin can manage categories', %q{
 
     expect(page).to have_content 'Новая категория'
 
-    fill_fields_for new_category
+    fill_fields_for new_category, 'spec/support/images/tiger.jpg'
     expect { click_on 'Сохранить' }.to change(Category, :count).by(1)
 
-    expect_category_page Category.last
+    expect_category_page Category.last, { with_image: true }
     expect(page).to have_content 'Категория сохранена'
   end
 
@@ -74,10 +74,14 @@ feature 'Admin can manage categories', %q{
       expect(page).to have_content category.title
       expect(page).to have_content category.description
       expect(page).to have_content category.priority
+      if params[:with_image]
+        expect(category.image).to_not be_nil
+        expect(page).to have_xpath("//img[contains(@src, '#{category.image.thumb_url}')]")
+      end
     end
   end
 
-  def expect_category_page(category)
+  def expect_category_page(category, params = {})
     expect(current_path).to match(category_path(category))
 
     expect(page).to have_content 'Категория'
@@ -85,12 +89,13 @@ feature 'Admin can manage categories', %q{
     expect(page).to have_content 'Описание'
     expect(page).to have_content 'Приоритет'
 
-    expect_to_have_category category
+    expect_to_have_category category, params
   end
 
-  def fill_fields_for(category)
+  def fill_fields_for(category, image_path = nil)
     fill_in 'Название', with: category.title
     fill_in 'Описание', with: category.description
     fill_in 'Приоритет', with: category.priority
+    attach_file 'Новая картинка', image_path if image_path
   end
 end

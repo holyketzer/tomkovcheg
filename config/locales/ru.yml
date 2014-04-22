@@ -36,6 +36,9 @@ ru:
         title: 'Название'
         description: 'Описание'
         priority: 'Приоритет'
+        image: 'Картинка'
+      image:
+        source: 'Новая картинка'
     successful:
       messages:
         article_saved: 'Статья сохранена'
