@@ -52,7 +52,21 @@ feature 'Admin can manage categories', %q{
     fill_fields_for new_category, 'spec/support/images/another image.jpg'
     expect { click_on 'Сохранить' }.to change(Category, :count).by(0)
 
-    expect_category_page Category.find(category.id), { with_image: true }
+    expect_category_page category.reload, { with_image: true }
+    expect(page).to have_content 'Категория сохранена'
+  end
+
+  scenario 'Admin updates existing category without image changing' do
+    category = create(:category, image: create(:image))
+
+    visit edit_category_path(category)
+    expect(page).to have_image category.image.thumb_url
+
+    new_category = build(:category)
+    fill_fields_for new_category
+    expect { click_on 'Сохранить' }.to change(Category, :count).by(0)
+
+    expect_category_page category.reload, { with_image: true }
     expect(page).to have_content 'Категория сохранена'
   end
 
@@ -76,7 +90,7 @@ feature 'Admin can manage categories', %q{
       expect(page).to have_content category.priority
       if params[:with_image]
         expect(category.image).to_not be_nil
-        expect(page).to have_xpath("//img[contains(@src, '#{category.image.thumb_url}')]")
+        expect(page).to have_image category.image.thumb_url
       end
     end
   end
