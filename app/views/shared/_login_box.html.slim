@@ -1,0 +1,19 @@
+#loginbox
+  .contentLB
+    table
+      tbody
+        tr: td width='60px' align='left' colspan='2' = 'пользователь:'
+        tr
+          td: input type='text' class='normalcontrol' style='width:95%;'
+          td width='5px' align='right': span style='color:Red; visibility:hidden;'
+        tr: td width='60px' align='left' colspan='2' = 'пароль:'
+        tr
+          td: input type='text' class='normalcontrol' style='width:95%;'
+          td width='5px' align='right': span style='color:Red; visibility:hidden;'
+        tr
+          td align='right': input type='submit' value='Войти'
+          td width='5px' align='right' = '&nbsp;'.html_safe
+    .smalloffset
+      a href='#' = 'Создать нового пользователя'
+    .smalloffset
+      a href='#' = 'Восстановить пароль'
