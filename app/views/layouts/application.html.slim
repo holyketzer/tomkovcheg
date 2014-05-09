@@ -42,6 +42,14 @@ html lang='en'
             a href = '#': .menuleft = 'Педагоги'
             a href = '#': .menuleft = 'История'
         #centercol
+          .contentf
+            #breadcrumb
+              a href = '#' = 'Главная'
+              span = image_tag 'separator.gif', class: 'separatorImage'
+              span = 'Текущая'
+          #centercolcontent
+            = render 'shared/article_preview'
+            = render 'shared/article_preview'
         #rightcol
         #bigcleaner
       #footer

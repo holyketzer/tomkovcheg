@@ -1,0 +1,15 @@
+.smallvertoffset
+  .header
+    a href = '#' = 'Статья'
+  .area: table: tbody
+    tr
+      td valign='middle'
+        small
+          .smalloffset = 'Опубликовано Sandra, 04.04.2014'
+          .smalloffset = 'Просмотрено 205 раз'
+          .smalloffset = image_tag 'stars50.gif', class: 'ratingImage', alt: 'Средний интерес: 5,0'
+        .smalloffset = 'Дорогие родители! Каждое воскресение в марте и апреле для вас будет проходить рукодельная мастерская.'
+      td style='text-align: right;'
+        = link_to '#', class: 'linkimage'
+          = image_tag '_small_article_Logo_WAAD.jpg', class: 'smalloffset'
+      td style='text-align: right;'
