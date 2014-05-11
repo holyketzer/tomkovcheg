@@ -23,7 +23,7 @@ html lang='en'
       #header
         #headermenu
           a href = '#': .menu10 = 'Главная'
-          a href = '#': .menu10 = 'Новости'
+          a href = '#': .menu10.menuA = 'Новости'
           a href = '#': .menu25 = 'Календарь событий'
           a href = '#': .menu20 = 'Фотогалерея'
           a href = '#': .menu10 = 'Отзывы'
@@ -42,18 +42,30 @@ html lang='en'
             a href = '#': .menuleft = 'Педагоги'
             a href = '#': .menuleft = 'История'
         #centercol
-          .contentf
-            #breadcrumb
+          #breadcrumb
+            .contentf
               a href = '#' = 'Главная'
               span = image_tag 'separator.gif', class: 'separatorImage'
               span = 'Текущая'
           #centercolcontent
             = render 'shared/article_preview'
             = render 'shared/article_preview'
+            - (0..3).each do |i|
+              = link_to i, '#'
+
         #rightcol
+          .smallvertoffset
+            = render 'shared/soul_calendar'
+
         #bigcleaner
       #footer
-
+        .contentMenuA
+            .smallvertoffset
+              .about
+                = 'Code by '
+                = link_to 'holyketzer', 'http://habrahabr.ru/users/darkcoder/'
+                = ' & Art by Olga Nechaeva'
+              .about = '2010 - 2014'
     / .container-fluid
     /   .row-fluid
     /     .span9

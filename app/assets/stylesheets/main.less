@@ -98,7 +98,7 @@ a.tagcloud {
   background-color: transparent;
   position: relative;
   top: 242px;
-  left: 160px;
+  left: 156px;
   width: 900px;
   height: 60px;
 }
@@ -112,8 +112,11 @@ a.tagcloud {
 }
 
 #breadcrumb {
-  padding: 5px 5px 5px 5px;
+  margin-top: 1px;
   font-size: 13px;
+  .contentf {
+    padding: 7px;
+  }
 }
 
 #loginbox {
@@ -189,9 +192,6 @@ a.tagcloud {
 }
 
 #footer {
-  /*position:relative;
-  float: left;
-  top: -50px;*/
   padding: 4px 0px 0px 260px;
   margin: 0px;
 }
@@ -209,6 +209,16 @@ a.tagcloud {
 
 .cleaner {
   clear: both;
+}
+
+.soulcalendar_image {
+  margin: 0px 0px 0px 1px;
+}
+
+.about {
+  font-size: xx-small;
+  font-weight: bold;
+  line-height: 15px;
 }
 
 .menu {
@@ -233,25 +243,25 @@ a.tagcloud {
 
 .menu10 {
   .menu;
-  width: 95px;
+  width: 98px;
 }
 
-div.menu15 {
+.menu15 {
   .menu;
   width: 105px;
 }
 
-div.menu20 {
+.menu20 {
   .menu;
   width: 138px;
 }
 
-div.menu25 {
+.menu25 {
   .menu;
   width: 183px;
 }
 
-div.menuleft {
+.menuleft {
   .menu;
   padding: 7px 5px;
   margin-bottom: 3px;
@@ -259,25 +269,10 @@ div.menuleft {
   clear: both;
 }
 
-/*p.menutext {
-  text-align: center;
-  font-size: 14px;
-  margin: 3px;
-  padding: 0px 0px 0px 0px;
-  font-weight: bold;
-  color: #472315;
-  vertical-align: middle;
-  text-shadow: #E8997D 0px 0px 2px;
-}*/
-
-p.menutextA {
-  text-align: center;
-  font-size: 14px;
-  margin: 3px;
-  padding: 0px 0px 0px 0px;
-  font-weight: bold;
+.menuA {
   color: #ffffff;
-  vertical-align: middle;
+  background: url(menuBackgroundA.png);
+  /*#EE9A38;*/
 }
 
 .header {
@@ -437,9 +432,21 @@ a.button:hover {
   border-radius: 7px;
 }
 
-.contentMenu {/*background:#F7CF94;*/ background: url(menuBackground.png); border-left: solid 1px #ffffff; border-right: solid 1px #ffffff; text-align: center; padding: 2px 5px 2px 5px; }
+.contentMenu {
+  background: url(menuBackground.png);
+  border-left: solid 1px #ffffff;
+  border-right: solid 1px #ffffff;
+  text-align: center;
+  padding: 2px 5px 2px 5px;
+}
 
-.contentMenuA { background:url(menuBackgroundA.png);/*#EE9A38;*/ border-left: solid 1px #ffffff; border-right: solid 1px #ffffff; text-align: center; padding: 2px 5px 2px 5px; }
+.contentMenuA {
+  background:url(menuBackgroundA.png);
+  text-align: center;
+  padding: 2px 5px 2px 5px;
+  border: 1px solid white;
+  border-radius: 7px;
+}
 
 .contentLB {
   background: #FDEBC3;
