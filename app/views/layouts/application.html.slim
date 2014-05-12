@@ -48,10 +48,8 @@ html lang='en'
               span = image_tag 'separator.gif', class: 'separatorImage'
               span = 'Текущая'
           #centercolcontent
-            = render 'shared/article_preview'
-            = render 'shared/article_preview'
-            - (0..3).each do |i|
-              = link_to i, '#'
+            #alets = bootstrap_flash
+            = yield
 
         #rightcol
           .smallvertoffset

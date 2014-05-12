@@ -1,15 +1,18 @@
-.smallvertoffset
+.smallvertoffset id="article-#{article.id}"
   .header
-    a href = '#' = 'Статья'
-  .area: table: tbody
+    = link_to article.title, article
+  .area: table.wide: tbody
     tr
-      td valign='middle'
-        small
-          .smalloffset = 'Опубликовано Sandra, 04.04.2014'
-          .smalloffset = 'Просмотрено 205 раз'
-          .smalloffset = image_tag 'stars50.gif', class: 'ratingImage', alt: 'Средний интерес: 5,0'
-        .smalloffset = 'Дорогие родители! Каждое воскресение в марте и апреле для вас будет проходить рукодельная мастерская.'
+      td valign='top'
+        .middlevertoffset = article.abstract
+        .middlevertoffset = image_tag 'stars50.gif', class: 'ratingImage', alt: 'Средний интерес: 5,0'
+        .middlevertoffset: small = "Опубликовано Sandra, #{article.created_at.to_date}"
+
       td style='text-align: right;'
         = link_to '#', class: 'linkimage'
           = image_tag '_small_article_Logo_WAAD.jpg', class: 'smalloffset'
-      td style='text-align: right;'
+    tr: td colspan='2' style='text-align: right;'
+      .smalloffset
+        = link_to t('helpers.links.edit'), edit_article_path(article), class: 'btn btn-mini'
+        '
+        = link_to t('helpers.links.destroy'), article_path(article), method: :delete, data: { confirm: t('helpers.links.confirm') }, class: 'btn btn-mini btn-danger'

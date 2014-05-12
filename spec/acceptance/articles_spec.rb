@@ -11,7 +11,6 @@ feature 'Admin can manage articles', %q{
   scenario 'Admin views articles list' do
     visit path
 
-    expect(page).to have_content 'Управление статьями'
     expect(page).to have_link 'Создать', href: new_article_path
 
     expect_to_have_article(article, with_link: true, with_edit_delete: true)
@@ -63,7 +62,7 @@ feature 'Admin can manage articles', %q{
     within "#article-#{article.id}" do
       expect(page).to have_link article.title, href: article_path(article) if params[:with_link]
       expect(page).to have_content article.title
-      expect(page).to have_content article.created_at
+      expect(page).to have_content article.created_at.to_date
 
       if params[:full]
         expect(page).to have_content article.category.title
