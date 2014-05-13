@@ -29,6 +29,18 @@ feature 'Admin can manage articles', %q{
     expect(page).to have_content 'Статья сохранена'
   end
 
+  scenario 'Admin creates unpublished article' do
+    new_article = build(:article, published: false)
+    visit new_article_path
+
+    fill_fields_for new_article
+    expect { click_on 'Сохранить' }.to change(Article, :count).by(1)
+
+    visit article_path(Article.last)
+    expect(current_path).to eq(articles_path)
+    expect(page).to_not have_content Article.last.title
+  end
+
   scenario 'Admin updates existing article' do
     new_article = build(:article)
     visit edit_article_path(article)
@@ -89,5 +101,15 @@ feature 'Admin can manage articles', %q{
     fill_in 'Заголовок', with: article.title
     fill_in 'Краткое содержание', with: article.abstract
     fill_in 'Статья', with: article.body
+    set_check 'Опубликована', article.published
+    set_check 'Одобрена', article.approved
+  end
+
+  def set_check name, value
+    if value
+      check name
+    else
+      uncheck name
+    end
   end
 end

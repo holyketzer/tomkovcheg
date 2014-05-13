@@ -32,6 +32,8 @@ ru:
         abstract: 'Краткое содержание'
         body: 'Статья'
         category: 'Категория'
+        published: 'Опубликована'
+        approved: 'Одобрена'
       category:
         title: 'Название'
         description: 'Описание'

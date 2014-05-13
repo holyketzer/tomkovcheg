@@ -4,5 +4,9 @@ class Article < ActiveRecord::Base
   belongs_to :category
   has_many :images, as: :imageable
 
+  def active?
+    published && approved
+  end
+
   scope :active, -> { where(published: true).where(approved: true) }
 end
