@@ -22,7 +22,8 @@ html lang='en'
     #maincontent
       #header
         #headermenu
-          a href = '#': .menu10 = 'Главная'
+          = link_to root_path
+            .menu10 = 'Главная'
           a href = '#': .menu10.menuA = 'Новости'
           a href = '#': .menu25 = 'Календарь событий'
           a href = '#': .menu20 = 'Фотогалерея'
@@ -64,13 +65,3 @@ html lang='en'
                 = link_to 'holyketzer', 'http://habrahabr.ru/users/darkcoder/'
                 = ' & Art by Olga Nechaeva'
               .about = '2010 - 2014'
-    / .container-fluid
-    /   .row-fluid
-    /     .span9
-    /       #alets
-    /         = bootstrap_flash
-    /       = yield
-    /     .span3
-    /       .well.sidebar-nav
-    /         ul.nav.nav-list
-    /           li.nav-header

@@ -1,18 +1,13 @@
 - model_class = Article
 div id="article-#{@article.id}"
-  div.page-header
-    h1 = @article.title
-
   .header
-    = @article.category.title
+    = "#{@article.category.title} > #{@article.title}"
   .area
-    = @article.body
-  .area
-    = @article.created_at
-
-.form-actions
-  = link_to t('helpers.links.back'), articles_path, class: 'btn'
-  '
-  = link_to t('helpers.links.edit'), edit_article_path(@article), class: 'btn'
-  '
-  = link_to t('helpers.links.destroy'), article_path(@article), method: 'delete', data: { confirm: t('helpers.links.confirm') }, class: 'btn btn-danger'
+    .middlevertoffset = @article.body
+    .middlevertoffset = @article.created_at.to_date
+    .middlevertoffset
+      = link_to t('helpers.links.back'), articles_path, class: 'btn'
+      '
+      = link_to t('helpers.links.edit'), edit_article_path(@article), class: 'btn btn-primary'
+      '
+      = link_to t('helpers.links.destroy'), article_path(@article), method: 'delete', data: { confirm: t('helpers.links.confirm') }, class: 'btn btn-danger'
