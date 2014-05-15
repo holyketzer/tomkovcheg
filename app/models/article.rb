@@ -9,4 +9,6 @@ class Article < ActiveRecord::Base
   end
 
   scope :active, -> { where(published: true).where(approved: true) }
+
+  accepts_nested_attributes_for :images
 end

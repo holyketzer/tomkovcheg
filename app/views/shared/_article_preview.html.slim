@@ -9,8 +9,9 @@
         .middlevertoffset: small = "Опубликовано Sandra, #{article.created_at.to_date}"
 
       td style='text-align: right;'
-        = link_to '#', class: 'linkimage'
-          = image_tag '_small_article_Logo_WAAD.jpg', class: 'smalloffset'
+        - if article.images.any?
+          = link_to article, class: 'linkimage'
+            = image_tag article.images.first.thumb_url, class: 'smalloffset'
     tr: td colspan='2' style='text-align: right;'
       .smalloffset
         = link_to t('helpers.links.edit'), edit_article_path(article), class: 'btn btn-mini'

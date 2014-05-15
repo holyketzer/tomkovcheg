@@ -6,6 +6,9 @@ div id="article-#{@article.id}"
     .middlevertoffset = @article.body
     .middlevertoffset = @article.created_at.to_date
     .middlevertoffset
+      - @article.images.each do |image|
+        = image_tag image.thumb_url
+    .middlevertoffset
       = link_to t('helpers.links.back'), articles_path, class: 'btn'
       '
       = link_to t('helpers.links.edit'), edit_article_path(@article), class: 'btn btn-primary'

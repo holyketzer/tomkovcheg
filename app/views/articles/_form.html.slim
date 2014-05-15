@@ -1,10 +1,15 @@
-= simple_form_for @article, html: { class: 'form-horizontal' } do |f|
+= simple_form_for @article, html: { class: 'form-horizontal', multipart: true } do |f|
   = f.association :category, label_method: :title, value_method: :id, include_blank: false
   = f.input :title
   = f.input :abstract
   = f.input :body, input_html: { class: 'bigtextarea' }
   = f.input :published
   = f.input :approved
+  .smalveroffset
+    - @article.images[0..-2].each do |image|
+      .smalveroffset
+        = image_tag image.thumb_url
+  = f.file_field :source, multiple: true, name: 'images[source][]'
 
   .actions
     = f.submit t('helpers.links.save'), class: 'btn btn-primary'
