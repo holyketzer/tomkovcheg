@@ -22,10 +22,12 @@ feature 'Admin can manage articles', %q{
 
     expect(page).to have_content 'Новая статья'
 
-    fill_fields_for new_article
+    fill_fields_for new_article, ['spec/support/images/tiger.jpg', 'spec/support/images/another image.jpg']
     expect { click_on 'Сохранить' }.to change(Article, :count).by(1)
 
-    expect_article_page Article.last
+    article = Article.last
+    expect(article.images.size).to eq 2
+    expect_article_page article
     expect(page).to have_content 'Статья сохранена'
   end
 
@@ -76,6 +78,10 @@ feature 'Admin can manage articles', %q{
       expect(page).to have_content article.title
       expect(page).to have_content article.created_at.to_date
 
+      article.images.each do |image|
+        expect(page).to have_xpath("//img[contains(@src, '#{File.basename(image.thumb_url).gsub(' ', '_')}')]")
+      end
+
       if params[:full]
         expect(page).to have_content article.category.title
         expect(page).to have_content article.body
@@ -96,13 +102,14 @@ feature 'Admin can manage articles', %q{
     expect_to_have_article article, full: true
   end
 
-  def fill_fields_for(article)
+  def fill_fields_for(article, images = [])
     select article.category.title, from: 'Категория'
     fill_in 'Заголовок', with: article.title
     fill_in 'Краткое содержание', with: article.abstract
     fill_in 'Статья', with: article.body
     set_check 'Опубликована', article.published
     set_check 'Одобрена', article.approved
+    attach_file 'Иллюстрации', images
   end
 
   def set_check name, value

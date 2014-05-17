@@ -9,7 +9,9 @@
     - @article.images[0..-2].each do |image|
       .smalveroffset
         = image_tag image.thumb_url
-  = f.file_field :source, multiple: true, name: 'images[source][]'
+  = f.label :images
+  .controls
+    = f.file_field :images, multiple: true, name: 'images[source][]'
 
   .actions
     = f.submit t('helpers.links.save'), class: 'btn btn-primary'
