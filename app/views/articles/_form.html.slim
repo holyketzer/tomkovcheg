@@ -5,9 +5,9 @@
   = f.input :body, input_html: { class: 'bigtextarea' }
   = f.input :published
   = f.input :approved
-  .smalveroffset
+  .controls
     - @article.images[0..-2].each do |image|
-      .smalveroffset
+      .smallvertoffset
         = image_tag image.thumb_url
   = f.label :images
   .controls

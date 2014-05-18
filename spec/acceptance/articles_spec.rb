@@ -6,7 +6,8 @@ feature 'Admin can manage articles', %q{
   I want to be able to manage articles
  } do
   let(:path) { articles_path }
-  let!(:article) { create(:article) }
+  let(:image) { create(:image) }
+  let!(:article) { create(:article, images: [image]) }
 
   scenario 'Admin views articles list' do
     visit path
@@ -52,11 +53,14 @@ feature 'Admin can manage articles', %q{
     expect(page).to have_field 'Заголовок', with: article.title
     expect(page).to have_field 'Краткое содержание', with: article.abstract
     expect(page).to have_field 'Статья', with: article.body
+    expect(page).to have_image article.images.first.thumb_url
 
-    fill_fields_for new_article
+    fill_fields_for new_article, ['spec/support/images/another image.jpg']
     expect { click_on 'Сохранить' }.to change(Article, :count).by(0)
 
-    expect_article_page Article.find(article.id)
+    article.reload
+    expect(article.images.size).to eq 2
+    expect_article_page article
     expect(page).to have_content 'Статья сохранена'
   end
 
@@ -79,7 +83,7 @@ feature 'Admin can manage articles', %q{
       expect(page).to have_content article.created_at.to_date
 
       article.images.each do |image|
-        expect(page).to have_xpath("//img[contains(@src, '#{File.basename(image.thumb_url).gsub(' ', '_')}')]")
+        expect(page).to have_image image.thumb_url
       end
 
       if params[:full]
