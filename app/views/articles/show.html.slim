@@ -8,8 +8,8 @@ div id="article-#{@article.id}"
     .middlevertoffset
       #nanoGallery
         - @article.images.each do |image|
-          /= image_tag image.thumb_url
           a href=image.source_url data-ngthumb=image.thumb_url
+            = image_tag image.thumb_url
     .middlevertoffset
       = link_to t('helpers.links.back'), articles_path, class: 'btn'
       '
