@@ -15,4 +15,6 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
+//= require bootstrap-wysihtml5
+//= require bootstrap-wysihtml5/locales/ru-RU
 //= require_tree .

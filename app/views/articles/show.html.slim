@@ -3,7 +3,7 @@ div id="article-#{@article.id}"
   .header
     = "#{@article.category.title} > #{@article.title}"
   .area
-    .middlevertoffset = @article.body
+    .middlevertoffset = @article.body.html_safe
     .middlevertoffset = @article.created_at.to_date
     .middlevertoffset
       #nanoGallery
