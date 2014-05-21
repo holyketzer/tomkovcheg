@@ -1,7 +1,7 @@
 = simple_form_for @article, html: { class: 'form-horizontal', multipart: true } do |f|
   = f.association :category, label_method: :title, value_method: :id, include_blank: false
   = f.input :title
-  = f.input :abstract
+  = f.input :abstract, input_html: { class: 'mediumtextarea' }
   = f.input :body, input_html: { class: 'bigtextarea wysihtml5' }
   = f.input :published
   = f.input :approved

@@ -18,6 +18,7 @@ html lang='en'
     = favicon_link_tag 'favicon.ico', rel: 'shortcut icon'
     = javascript_include_tag 'application'
 
+  - edit_mode = params[:action] == 'edit' || params[:action] == 'new'
   body
     #maincontent
       #header
@@ -42,7 +43,8 @@ html lang='en'
             a href = '#': .menuleft = 'Традиции'
             a href = '#': .menuleft = 'Педагоги'
             a href = '#': .menuleft = 'История'
-        #centercol
+        - center_col = edit_mode ? 'bigcentercol' : 'centercol'
+        div id="#{center_col}"
           #breadcrumb
             .contentf
               a href = '#' = 'Главная'
@@ -52,12 +54,13 @@ html lang='en'
             #alets = bootstrap_flash
             = yield
 
-        #rightcol
-          .smallvertoffset
-            = render 'shared/soul_calendar'
+        - unless edit_mode
+          #rightcol
+            .smallvertoffset
+              = render 'shared/soul_calendar'
 
         #bigcleaner
-      #footer
+      #footer class="#{'small-footer' unless edit_mode}"
         .contentMenuA
             .smallvertoffset
               .about
