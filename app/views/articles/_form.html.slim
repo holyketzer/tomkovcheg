@@ -7,8 +7,10 @@
   = f.input :approved
   .controls
     - @article.images[0..-2].each do |image|
-      .smallvertoffset
+      .smallvertoffset id="image-#{image.id}"
         = image_tag image.thumb_url
+        '
+        = link_to t('helpers.links.destroy'), image, method: :delete, data: { confirm: t('helpers.links.confirm') }, class: 'btn btn-mini btn-danger'
   = f.label :images
   .controls
     = f.file_field :images, multiple: true, name: 'images[source][]'

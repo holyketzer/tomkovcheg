@@ -74,6 +74,17 @@ feature 'Admin can manage articles', %q{
     expect(page).to_not have_content article.title
   end
 
+  scenario 'Admin deletes one image from article' do
+    visit edit_article_path(article)
+    image = article.images.first
+    within "#image-#{image.id}" do
+      expect { click_on 'Удалить' }.to change(article.images, :count).by(-1)
+    end
+
+    expect(current_path).to eq(edit_article_path(article))
+    expect(page).to_not have_image image.thumb_url
+  end
+
   private
 
   def expect_to_have_article(article, params = {})
