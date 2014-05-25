@@ -1,3 +1,13 @@
+/ by default use three columns markup
+- unless content_for? :right_column
+  - content_for :right_column
+    #rightcol
+      .smallvertoffset
+        = render 'shared/soul_calendar'
+
+- center_column_style ||= 'centercol'
+- footer_class ||= 'small-footer'
+
 doctype html
 html lang='en'
   head
@@ -18,7 +28,6 @@ html lang='en'
     = favicon_link_tag 'favicon.ico', rel: 'shortcut icon'
     = javascript_include_tag 'application'
 
-  - edit_mode = params[:action] == 'edit' || params[:action] == 'new'
   body
     #maincontent
       #header
@@ -43,8 +52,8 @@ html lang='en'
             a href = '#': .menuleft = 'Традиции'
             a href = '#': .menuleft = 'Педагоги'
             a href = '#': .menuleft = 'История'
-        - center_col = edit_mode ? 'bigcentercol' : 'centercol'
-        div id="#{center_col}"
+
+        div id=center_column_style
           #breadcrumb
             .contentf
               a href = '#' = 'Главная'
@@ -54,13 +63,11 @@ html lang='en'
             #alets = bootstrap_flash
             = yield
 
-        - unless edit_mode
-          #rightcol
-            .smallvertoffset
-              = render 'shared/soul_calendar'
+        = yield :right_column
 
         #bigcleaner
-      #footer class="#{'small-footer' unless edit_mode}"
+
+      #footer class=footer_class
         .contentMenuA
             .smallvertoffset
               .about

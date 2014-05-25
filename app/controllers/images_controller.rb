@@ -1,5 +1,6 @@
-class ImagesController < InheritedResources::Base
+class ImagesController < ApplicationController
   respond_to :html, only: :destroy
+  inherit_resources
 
   def destroy
     destroy! do |format|

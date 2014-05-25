@@ -1,5 +1,8 @@
-class CategoriesController < InheritedResources::Base
+class CategoriesController < ApplicationController
   respond_to :html
+  inherit_resources
+
+  layout 'two_columns', only: [:new, :edit, :index]
 
   def new
     @category = Category.new

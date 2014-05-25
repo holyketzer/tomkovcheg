@@ -9,7 +9,6 @@
             = article.abstract
           - else
             = sanitize(article.body.gsub('</', ' </'), tags: [])[0, 200] + '...'
-        .middlevertoffset = image_tag 'stars50.gif', class: 'ratingImage', alt: 'Средний интерес: 5,0'
         .middlevertoffset: small = "Опубликовано Sandra, #{article.created_at.to_date}"
 
       td style='text-align: right;'

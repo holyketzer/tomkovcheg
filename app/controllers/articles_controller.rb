@@ -1,5 +1,8 @@
-class ArticlesController < InheritedResources::Base
+class ArticlesController < ApplicationController
   respond_to :html
+  inherit_resources
+
+  layout 'two_columns', only: [:new, :edit]
 
   def new
     @article = Article.new
