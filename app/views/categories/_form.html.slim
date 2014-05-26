@@ -10,7 +10,7 @@
   = f.simple_fields_for :image do |i|
     = i.input :source, as: :file
 
-  .form-actions
+  .actions
     = f.submit t('helpers.links.save'), class: 'btn btn-primary'
     '
     = link_to t('helpers.links.cancel'), categories_path, class: 'btn'
