@@ -25,6 +25,11 @@ class CategoriesController < ApplicationController
     update!(notice: t('activerecord.successful.messages.category_saved'))
   end
 
+  def show
+    @category = Category.find(params[:id])
+    @articles = @category.articles.page params[:page]
+  end
+
   private
     def build_resource_params
       [params.fetch(:category, {}).permit(:title, :description, :priority, image_attributes: [:id, :imageable_id, :source])]

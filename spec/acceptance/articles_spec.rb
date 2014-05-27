@@ -26,7 +26,7 @@ feature 'Admin can manage articles', %q{
     fill_fields_for new_article, ['spec/support/images/tiger.jpg', 'spec/support/images/another image.jpg']
     expect { click_on 'Сохранить' }.to change(Article, :count).by(1)
 
-    article = Article.last
+    article = Article.find_by_title(new_article.title)
     expect(article.images.size).to eq 2
     expect_article_page article
     expect(page).to have_content 'Статья сохранена'
@@ -39,9 +39,10 @@ feature 'Admin can manage articles', %q{
     fill_fields_for new_article
     expect { click_on 'Сохранить' }.to change(Article, :count).by(1)
 
-    visit article_path(Article.last)
+    article = Article.find_by_title(new_article.title)
+    visit article_path(article)
     expect(current_path).to eq(articles_path)
-    expect(page).to_not have_content Article.last.title
+    expect(page).to_not have_content article.title
   end
 
   scenario 'Admin updates existing article' do

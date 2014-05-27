@@ -8,7 +8,10 @@ class Article < ActiveRecord::Base
     published && approved
   end
 
+  default_scope { order('created_at DESC') }
   scope :active, -> { where(published: true).where(approved: true) }
 
   accepts_nested_attributes_for :images
+
+  paginates_per 5
 end

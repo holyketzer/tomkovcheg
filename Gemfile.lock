@@ -105,6 +105,9 @@ GEM
       railties (>= 3.1.0)
       turbolinks
     json (1.8.1)
+    kaminari (0.15.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     launchy (2.4.2)
       addressable (~> 2.3)
     less (2.5.0)
@@ -263,6 +266,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
+  kaminari
   launchy
   less-rails
   mini_magick
