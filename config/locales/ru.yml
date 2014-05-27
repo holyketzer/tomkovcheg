@@ -35,6 +35,7 @@ ru:
         published: 'Опубликована'
         approved: 'Одобрена'
         images: 'Иллюстрации'
+        articles_count: 'Статей'
       category:
         title: 'Название'
         description: 'Описание'

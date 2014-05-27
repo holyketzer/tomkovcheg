@@ -21,7 +21,7 @@ feature 'Admin can manage categories', %q{
       expect(page).to have_content 'Приоритет'
     end
 
-    expect_to_have_category(category, with_link: true)
+    expect_to_have_category(category, with_link: true, with_priority: true)
 
     expect(page).to have_link 'Изменить', href: edit_category_path(category)
     expect(page).to have_link 'Удалить', href: category_path(category)
@@ -87,7 +87,7 @@ feature 'Admin can manage categories', %q{
       expect(page).to have_link category.title, href: category_path(category) if params[:with_link]
       expect(page).to have_content category.title
       expect(page).to have_content category.description
-      expect(page).to have_content category.priority
+      expect(page).to have_content category.priority if params[:with_priority]
       if params[:with_image]
         expect(category.image).to_not be_nil
         expect(page).to have_image category.image.thumb_url
@@ -97,11 +97,6 @@ feature 'Admin can manage categories', %q{
 
   def expect_category_page(category, params = {})
     expect(current_path).to match(category_path(category))
-
-    expect(page).to have_content 'Категория'
-    expect(page).to have_content 'Название'
-    expect(page).to have_content 'Описание'
-    expect(page).to have_content 'Приоритет'
 
     expect_to_have_category category, params
   end
