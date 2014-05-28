@@ -34,8 +34,10 @@ html lang='en'
         #headermenu
           = link_to root_path
             .menu10 = 'Главная'
-          a href = '#': .menu10.menuA = 'Новости'
-          a href = '#': .menu25 = 'Календарь событий'
+          = link_to category_path(1)
+            .menu10.menuA = 'Новости'
+          = link_to category_path(7)
+            .menu25 = 'Календарь событий'
           a href = '#': .menu20 = 'Фотогалерея'
           a href = '#': .menu10 = 'Отзывы'
           a href = '#': .menu10 = 'Проекты'
@@ -45,12 +47,17 @@ html lang='en'
       #middle_wrapper
         #leftcol
           #leftmenu
-            a href = '#': .menuleft = 'Благодарности'
-            a href = '#': .menuleft = 'Полезная информация'
-            a href = '#': .menuleft = 'Сенсорная комната'
-            a href = '#': .menuleft = 'Духовные импульсы'
+            = link_to category_path(10)
+              .menuleft = 'Благодарности'
+            = link_to category_path(3)
+              .menuleft = 'Полезная информация'
+            = link_to category_path(4)
+              .menuleft = 'Сенсорная комната'
+            = link_to category_path(8)
+              .menuleft = 'Духовные импульсы'
             a href = '#': .menuleft = 'Традиции'
-            a href = '#': .menuleft = 'Педагоги'
+            = link_to category_path(6)
+              .menuleft = 'Педагоги'
             a href = '#': .menuleft = 'История'
 
         div id=center_column_style
