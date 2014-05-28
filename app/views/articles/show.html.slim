@@ -6,10 +6,11 @@ div id="article-#{@article.id}"
     .middlevertoffset = @article.body.html_safe
     .middlevertoffset = @article.created_at.to_date
     .middlevertoffset
-      #nanoGallery
-        - @article.images.each do |image|
-          a href=image.source_url data-ngthumb=image.thumb_url
-            = image_tag image.thumb_url
+      - if @article.images.any?
+        #nanoGallery
+          - @article.images.each do |image|
+            a href=image.source_url data-ngthumb=image.thumb_url
+              = image_tag image.thumb_url
     .middlevertoffset
       = link_to t('helpers.links.back'), articles_path, class: 'btn'
       '
