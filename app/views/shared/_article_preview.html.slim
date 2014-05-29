@@ -1,3 +1,4 @@
+- hide_details ||= false
 .smallvertoffset id="article-#{article.id}" class="#{'unpublished' unless article.published?}"
   .header
     = link_to article.title, article
@@ -9,7 +10,8 @@
             = article.abstract
           - else
             = sanitize(article.body.gsub('</', ' </'), tags: [])[0, 200] + '...'
-        .middlevertoffset: small = "Опубликовано Sandra, #{article.created_at.to_date}"
+        - unless hide_details
+          .middlevertoffset: small = "Опубликовано Sandra, #{article.created_at}"
 
       td style='text-align: right;'
         - if article.images.any?

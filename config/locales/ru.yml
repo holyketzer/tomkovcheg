@@ -46,3 +46,6 @@ ru:
       messages:
         article_saved: 'Статья сохранена'
         category_saved: 'Категория сохранена'
+  time:
+    formats:
+      default: "%Y-%m-%d %H:%M"
