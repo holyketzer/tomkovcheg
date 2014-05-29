@@ -33,7 +33,6 @@ ru:
         body: 'Статья'
         category: 'Категория'
         published: 'Опубликована'
-        approved: 'Одобрена'
         images: 'Иллюстрации'
         articles_count: 'Статей'
       category:

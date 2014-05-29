@@ -10,7 +10,7 @@ class ArticlesController < ApplicationController
   end
 
   def index
-    @articles = Article.active
+    @articles = Article.all
   end
 
   def create
@@ -55,13 +55,13 @@ class ArticlesController < ApplicationController
 
   def show
     show! do |format|
-      format.html { redirect_to articles_path unless @article.active? }
+      format.html { redirect_to articles_path unless @article.published? }
     end
   end
 
   private
 
   def article_params
-    params.require(:article).permit(:title, :abstract, :body, :category_id, :published, :approved, images_attributes: [:id, :imageable_id, :source])
+    params.require(:article).permit(:title, :abstract, :body, :category_id, :published, images_attributes: [:id, :imageable_id, :source])
   end
 end

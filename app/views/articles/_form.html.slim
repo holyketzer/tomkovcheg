@@ -4,7 +4,6 @@
   = f.input :abstract, input_html: { class: 'mediumtextarea' }
   = f.input :body, input_html: { class: 'bigtextarea wysihtml5' }
   = f.input :published
-  = f.input :approved
   .controls
     - @article.images[0..-2].each do |image|
       .smallvertoffset id="image-#{image.id}"

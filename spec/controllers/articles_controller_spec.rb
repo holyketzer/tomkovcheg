@@ -2,13 +2,12 @@ require 'spec_helper'
 
 describe ArticlesController do
   describe 'GET index' do
-    it 'returns pusblished and approved articles' do
-      active_article = create(:article)
-      published_only_article = create(:article, published: true, approved: false)
-      approved_only_article = create(:article, published: false, approved: true)
+    it 'returns all articles' do
+      article = create(:article)
+      unpublished_article = create(:article, published: false)
 
       get :index
-      expect(assigns(:articles)).to eq([active_article])
+      expect(assigns(:articles)).to include(article, unpublished_article)
     end
   end
 end

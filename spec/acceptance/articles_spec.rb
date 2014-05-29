@@ -42,7 +42,7 @@ feature 'Admin can manage articles', %q{
     article = Article.find_by_title(new_article.title)
     visit article_path(article)
     expect(current_path).to eq(articles_path)
-    expect(page).to_not have_content article.title
+    expect(page).to have_content article.title
   end
 
   scenario 'Admin updates existing article' do
@@ -124,7 +124,6 @@ feature 'Admin can manage articles', %q{
     fill_in 'Краткое содержание', with: article.abstract
     fill_in 'Статья', with: article.body
     set_check 'Опубликована', article.published
-    set_check 'Одобрена', article.approved
     attach_file 'Иллюстрации', images
   end
 

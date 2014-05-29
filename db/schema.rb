@@ -11,14 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140421192617) do
+ActiveRecord::Schema.define(version: 20140529191800) do
 
   create_table "articles", force: true do |t|
     t.integer  "category_id"
     t.string   "title"
     t.text     "abstract"
     t.text     "body"
-    t.boolean  "approved",         default: false
     t.boolean  "published",        default: false
     t.boolean  "comments_enabled", default: false
     t.boolean  "voting_enabled",   default: false

@@ -9,7 +9,6 @@ FactoryGirl.define do
     sequence(:title) { |n| "Статья-№#{n}" }
     abstract 'Краткое содержание'
     body 'Полный текст'
-    approved true
     published true
     category
   end
