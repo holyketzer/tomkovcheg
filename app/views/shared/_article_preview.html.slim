@@ -1,4 +1,4 @@
-.smallvertoffset id="article-#{article.id}"
+.smallvertoffset id="article-#{article.id}" class="#{'unpublished' unless article.published?}"
   .header
     = link_to article.title, article
   .area: table.wide: tbody

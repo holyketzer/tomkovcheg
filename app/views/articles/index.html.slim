@@ -4,8 +4,6 @@
   - @articles.each do |article|
     = render partial: 'shared/article_preview', locals: { article: article }
 
-  .smalloffset
-    - (0..3).each do |i|
-      = link_to i, '#'
+  = paginate @articles
 
   .smallvertoffset = link_to t('helpers.links.new'), new_article_path, class: 'btn btn-primary'
