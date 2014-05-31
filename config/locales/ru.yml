@@ -42,6 +42,9 @@ ru:
         image: 'Картинка'
       image:
         source: 'Новая картинка'
+      user:
+        email: 'Email'
+        password: 'Пароль'
     successful:
       messages:
         article_saved: 'Статья сохранена'

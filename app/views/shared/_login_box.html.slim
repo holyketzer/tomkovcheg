@@ -1,19 +1,16 @@
 #loginbox
   .contentLB
-    table
-      tbody
-        tr: td width='60px' align='left' colspan='2' = 'пользователь:'
-        tr
-          td: input type='text' class='normalcontrol' style='width:95%;'
-          td width='5px' align='right': span style='color:Red; visibility:hidden;'
-        tr: td width='60px' align='left' colspan='2' = 'пароль:'
-        tr
-          td: input type='text' class='normalcontrol' style='width:95%;'
-          td width='5px' align='right': span style='color:Red; visibility:hidden;'
-        tr
-          td align='right': input type='submit' value='Войти'
-          td width='5px' align='right' = '&nbsp;'.html_safe
-    .smalloffset
-      a href='#' = 'Создать нового пользователя'
-    .smalloffset
-      a href='#' = 'Восстановить пароль'
+    - if user_signed_in?
+      .welcomebox
+        .middleoffset = current_user.email
+        .middleoffset = link_to 'Профиль', edit_user_registration_path
+        .middleoffset = link_to 'Выход', destroy_user_session_path, method: :delete
+    - else
+      = simple_form_for User.new, as: 'user', url: session_path('user'), html: { class: 'form-horizontal' } do |f|
+        = f.input :email
+        = f.input :password
+        = f.submit 'Войти', class: 'btn'
+      .smalloffset
+        = link_to 'Зарегистрироваться', new_user_registration_path
+      .smalloffset
+        = link_to 'Восстановить пароль', new_user_password_path
