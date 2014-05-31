@@ -63,9 +63,7 @@ html lang='en'
         div id=center_column_style
           #breadcrumb
             .contentf
-              a href = '#' = 'Главная'
-              span = image_tag 'separator.gif', class: 'separatorImage'
-              span = 'Текущая'
+              == breadcrumbs separator: "#{image_tag 'separator.gif', class: 'separatorImage'}", display_single_fragment: true
           #centercolcontent
             #alets = bootstrap_flash
             = yield

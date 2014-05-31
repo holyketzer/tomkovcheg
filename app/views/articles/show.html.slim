@@ -1,7 +1,9 @@
 - model_class = Article
+- breadcrumb :article, @article
+
 div id="article-#{@article.id}"
   .header
-    = "#{@article.category.title} > #{@article.title}"
+    = @article.title
   .area
     .middlevertoffset = @article.body.html_safe
     .middlevertoffset = @article.created_at.to_date

@@ -84,6 +84,8 @@ GEM
     factory_girl_rails (4.4.1)
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
+    gretel (3.0.7)
+      rails (>= 3.2.0)
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
@@ -262,6 +264,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.0.0)
   factory_girl_rails
+  gretel
   inherited_resources
   jbuilder (~> 2.0)
   jquery-rails

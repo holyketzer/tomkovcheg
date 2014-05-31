@@ -31,6 +31,7 @@ gem 'carrierwave'
 gem 'mini_magick' # ensure that imagemagick is installed: 'sudo apt-get install imagemagick'
 gem 'bootstrap-wysihtml5-rails' # wysiwyg editor
 gem 'kaminari' # pagination
+gem 'gretel' #breadcrumbs
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc

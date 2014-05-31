@@ -99,7 +99,6 @@ feature 'Admin can manage articles', %q{
       end
 
       if params[:full]
-        expect(page).to have_content article.category.title
         expect(page).to have_content article.body
       else
         expect(page).to have_content article.abstract
@@ -114,6 +113,10 @@ feature 'Admin can manage articles', %q{
 
   def expect_article_page(article)
     expect(current_path).to match(article_path(article))
+
+    within '#breadcrumb' do
+      expect(page).to have_content article.category.title
+    end
 
     expect_to_have_article article, full: true
   end
