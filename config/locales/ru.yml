@@ -45,6 +45,9 @@ ru:
       user:
         email: 'Email'
         password: 'Пароль'
+        password_confirmation: 'Подтвержение пароля'
+        current_password: 'Текущий пароль'
+        remember_me: 'Запомнить меня'
     successful:
       messages:
         article_saved: 'Статья сохранена'

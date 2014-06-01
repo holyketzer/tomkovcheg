@@ -1,0 +1,12 @@
+.header = 'Восстановление пароля'
+.area
+  = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+    = f.error_notification
+
+    .form-inputs
+      = f.input :email, required: true, autofocus: true
+
+    .actions
+      = f.button :submit, 'Получить инструкцию по сбросу пароля'
+
+  = render 'devise/shared/links'
