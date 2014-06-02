@@ -1,0 +1,6 @@
+.header = 'Ваш профиль'
+.area
+  .smallverofset = @user.email
+
+  .actions
+    = link_to 'Редактировать', edit_user_registration_path, class: 'btn btn-warning'

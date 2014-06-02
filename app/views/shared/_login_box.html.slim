@@ -3,7 +3,7 @@
     - if user_signed_in?
       .welcomebox
         .middleoffset = current_user.email
-        .middleoffset = link_to 'Профиль', edit_user_registration_path
+        .middleoffset = link_to 'Профиль', account_path
         .middleoffset = link_to 'Выход', destroy_user_session_path, method: :delete
     - else
       = simple_form_for User.new, as: 'user', url: session_path('user'), html: { class: 'form-horizontal' } do |f|
