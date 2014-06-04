@@ -1,0 +1,28 @@
+= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  = f.error_notification
+  - persisted = resource.persisted?
+
+  .form-inputs
+    = f.input :email, required: true, autofocus: true
+
+    - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+      p = "Ожидает подтверждения: #{resource.unconfirmed_email}"
+
+    = f.input :nickname, required: !persisted
+
+    - if persisted
+      - password_params = { autocomplete: 'off', hint: 'оставьте эти поля пустым если не хотите менять пароль', required: false }
+    - else
+      - password_params = { required: true }
+
+    = f.input :password, password_params
+    = f.input :password_confirmation, password_params
+
+    - if persisted
+      = f.input :current_password, hint: 'здесь нужно указать текущий пароль', required: true
+
+  .actions
+    - text = persisted ? 'Сохранить' : 'Зарегистрироваться'
+    = f.submit text, class: 'btn btn-warning'
+
+= render 'devise/shared/links'
