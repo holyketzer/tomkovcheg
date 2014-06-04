@@ -20,4 +20,10 @@ FactoryGirl.define do
       source File.open(File.join(Rails.root, 'spec/support/images/another image.jpg'))
     end
   end
+
+  factory :user do
+    sequence(:email) { |n| "user-#{n}@tomkovcheg.ru" }
+    password '12345678'
+    password_confirmation '12345678'
+  end
 end
