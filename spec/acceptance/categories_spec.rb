@@ -33,7 +33,7 @@ feature 'Admin can manage categories', %q{
 
     expect(page).to have_content 'Новая категория'
 
-    fill_fields_for new_category, 'spec/support/images/tiger.jpg'
+    fill_fields_for new_category, build(:image_path)
     expect { click_on 'Сохранить' }.to change(Category, :count).by(1)
 
     expect_category_page Category.last, { with_image: true }
@@ -49,7 +49,7 @@ feature 'Admin can manage categories', %q{
     expect(page).to have_field 'Описание', with: category.description
     expect(page).to have_field 'Приоритет', with: category.priority
 
-    fill_fields_for new_category, 'spec/support/images/another image.jpg'
+    fill_fields_for new_category, build(:image_path)
     expect { click_on 'Сохранить' }.to change(Category, :count).by(0)
 
     expect_category_page category.reload, { with_image: true }

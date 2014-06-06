@@ -13,12 +13,16 @@ FactoryGirl.define do
     category
   end
 
-  factory :image do
-    source File.open(File.join(Rails.root, 'spec/support/images/tiger.jpg'))
+  images = ['tiger.jpg', 'another image.jpg', 'blue fish.jpg', 'yellow sun.jpg'].map { |file| 'spec/support/images/' + file }
 
-    factory :new_image do
-      source File.open(File.join(Rails.root, 'spec/support/images/another image.jpg'))
-    end
+  factory :image_path, class: String do
+    sequence(:path) { |n| images[n % images.size] }
+
+    initialize_with { new(path) }
+  end
+
+  factory :image, aliases: [:avatar] do
+    sequence(:source) { |n| File.open(File.join(Rails.root, images[n % images.size])) }
   end
 
   factory :user do

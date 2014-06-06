@@ -23,7 +23,7 @@ feature 'Admin can manage articles', %q{
 
     expect(page).to have_content 'Новая статья'
 
-    fill_fields_for new_article, ['spec/support/images/tiger.jpg', 'spec/support/images/another image.jpg']
+    fill_fields_for new_article, [build(:image_path), build(:image_path)]
     expect { click_on 'Сохранить' }.to change(Article, :count).by(1)
 
     article = Article.find_by_title(new_article.title)
@@ -56,7 +56,7 @@ feature 'Admin can manage articles', %q{
     expect(page).to have_field 'Статья', with: article.body
     expect(page).to have_image article.images.first.thumb_url
 
-    fill_fields_for new_article, ['spec/support/images/another image.jpg']
+    fill_fields_for new_article, [build(:image_path)]
     expect { click_on 'Сохранить' }.to change(Article, :count).by(0)
 
     article.reload
