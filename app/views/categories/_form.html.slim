@@ -3,7 +3,7 @@
   = f.input :title
   = f.input :description
   = f.input :priority
-  - if @category.image
+  - if @category.image.persisted?
     .control-group
       = f.label :image
       .controls

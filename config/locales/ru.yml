@@ -43,6 +43,7 @@ ru:
       image:
         source: 'Новая картинка'
       user:
+        avatar: 'Аватар'
         email: 'Email'
         password: 'Пароль'
         nickname: 'Имя пользователя'

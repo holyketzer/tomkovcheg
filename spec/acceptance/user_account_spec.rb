@@ -21,13 +21,16 @@ feature 'User login', %q{
 
       click_on 'Регистрация'
 
-      fill_in_user_fields(new_user) { click_on 'Зарегистрироваться' }
+      fill_in_user_fields(new_user, build(:image_path)) { click_on 'Зарегистрироваться' }
 
       expect(current_path).to eq(root_path)
       expect(page).to have_link 'Профиль'
       expect(page).to have_link 'Выход'
 
       expect_account_page(new_user)
+
+      new_user = User.find_by_email(new_user.email)
+      expect(new_user.avatar).to_not be_nil
     end
 
     scenario "can't see profile" do
@@ -38,7 +41,8 @@ feature 'User login', %q{
   end
 
   context 'authenticated user' do
-    let(:user) { create(:user) }
+    let(:avatar) { create(:avatar) }
+    let(:user) { create(:user, avatar: avatar) }
 
     background do
       login_as user
@@ -67,12 +71,16 @@ feature 'User login', %q{
       click_on 'Профиль'
       click_on 'Редактировать'
 
-      fill_in_user_fields(updated_user) do
+      fill_in_user_fields(updated_user, build(:image_path)) do
         fill_in 'Текущий пароль', with: user.password
         click_on 'Сохранить'
       end
 
       expect_account_page(updated_user)
+
+      updated_user = User.find_by_email(updated_user.email)
+      expect(updated_user.avatar).to_not be_nil
+      expect(updated_user.avatar.source).to_not eq avatar.source
     end
   end
 
@@ -83,14 +91,16 @@ feature 'User login', %q{
 
     expect(page).to have_content user.email
     expect(page).to have_content user.nickname
+    expect(page).to have_image user.avatar.thumb_url if user.avatar
   end
 
-  def fill_in_user_fields(user)
+  def fill_in_user_fields(user, avatar_path = nil)
     within '.registration' do
       fill_in 'Email', with: user.email
       fill_in 'Имя пользователя', with: user.nickname
       fill_in 'Пароль', with: user.password
       fill_in 'Подтверждение пароля', with: user.password_confirmation
+      attach_file 'Аватар', avatar_path if avatar_path
       yield if block_given?
     end
   end

@@ -1,7 +1,10 @@
 .header = 'Ваш профиль'
 .area
-  .smallverofset = @user.email
-  .smallverofset = @user.nickname
+  .middlevertoffset = @user.email
+  .middlevertoffset = @user.nickname
+  - if @user.avatar
+    .middlevertoffset
+      = image_tag @user.avatar.thumb_url
 
   .actions
     = link_to 'Редактировать', edit_user_registration_path, class: 'btn btn-warning'

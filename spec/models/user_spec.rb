@@ -10,4 +10,8 @@ describe User do
 
     it { should validate_presence_of :password }
   end
+
+  describe "associations" do
+    it { should have_one(:avatar) }
+  end
 end

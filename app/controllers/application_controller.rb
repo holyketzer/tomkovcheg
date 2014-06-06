@@ -8,8 +8,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << :nickname #<< { avatar_attributes: [:source] }
+    devise_parameter_sanitizer.for(:sign_up) << :nickname << { avatar_attributes: [:source] }
 
-    devise_parameter_sanitizer.for(:account_update) << :nickname #<< { avatar_attributes: [:id, :source] }
+    devise_parameter_sanitizer.for(:account_update) << :nickname << { avatar_attributes: [:id, :source] }
   end
 end

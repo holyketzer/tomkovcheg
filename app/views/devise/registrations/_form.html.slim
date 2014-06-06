@@ -1,4 +1,6 @@
-= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+- resource.build_avatar unless resource.avatar
+
+= simple_form_for resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true } do |f|
   = f.error_notification
   - persisted = resource.persisted?
 
@@ -20,6 +22,14 @@
 
     - if persisted
       = f.input :current_password, hint: 'здесь нужно указать текущий пароль', required: true
+
+    - if resource.avatar.persisted?
+      .control-group
+        = f.label :avatar
+        .controls
+          = image_tag resource.avatar.thumb_url
+    = f.simple_fields_for :avatar do |i|
+      = i.input :source, as: :file, label: 'Аватар'
 
   .actions
     - text = persisted ? 'Сохранить' : 'Зарегистрироваться'
