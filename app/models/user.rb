@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   end
 
   def create_authentication(auth)
-    self.authentications.create!(provider: auth.provider, uid: auth.uid)
+    self.authentications.create!(provider: auth['provider'], uid: auth['uid'])
   end
 
   def add_authentication(auth)

@@ -54,6 +54,9 @@ ru:
       messages:
         article_saved: 'Статья сохранена'
         category_saved: 'Категория сохранена'
+  registration:
+    new:
+      finish: 'Пожалуйста, завершите регистрацию'
   time:
     formats:
       default: "%Y-%m-%d %H:%M"

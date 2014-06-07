@@ -26,18 +26,28 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_to profile_path
     else
       @user = User.find_by_oauth(auth)
-      avatar = Image.create(remote_source_url: process_uri(auth.info[:image]))
       if @user && @user.persisted?
-        @user.update!(avatar: avatar) if avatar.source
+        unless @user.avatar
+          create_avatar(auth) { |avatar| @user.update!(avatar: avatar) }
+        end
         sign_in_and_redirect @user, event: :authentication
         set_flash_message(:notice, :success, kind: provider) if is_navigational_format?
       else
         flash[:notice] = t('registration.new.finish')
         session['devise.oauth'] = auth
-        session['devise.avatar_id'] = avatar.id if avatar.source
+        create_avatar(auth) { |avatar| session['devise.avatar_id'] = avatar.id }
         redirect_to new_user_registration_path
       end
     end
+  end
+
+  def create_avatar(auth)
+    avatar = nil
+    if auth.info[:image]
+      avatar = Image.create(remote_source_url: process_uri(auth.info[:image]))
+      yield(avatar) if block_given? && avatar.source
+    end
+    avatar
   end
 
   def process_uri(uri)

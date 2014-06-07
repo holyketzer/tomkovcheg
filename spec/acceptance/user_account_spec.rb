@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-feature 'User login', %q{
+feature 'User account', %q{
   In order to post comments
   As an user
-  I want to login into site
+  I want to have an account
  } do
 
   background do
@@ -92,16 +92,5 @@ feature 'User login', %q{
     expect(page).to have_content user.email
     expect(page).to have_content user.nickname
     expect(page).to have_image user.avatar.thumb_url if user.avatar
-  end
-
-  def fill_in_user_fields(user, avatar_path = nil)
-    within '.registration' do
-      fill_in 'Email', with: user.email
-      fill_in 'Имя пользователя', with: user.nickname
-      fill_in 'Пароль', with: user.password
-      fill_in 'Подтверждение пароля', with: user.password_confirmation
-      attach_file 'Аватар', avatar_path if avatar_path
-      yield if block_given?
-    end
   end
 end

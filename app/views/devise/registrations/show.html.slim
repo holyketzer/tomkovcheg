@@ -3,7 +3,7 @@
   .middlevertoffset = @user.email
   .middlevertoffset = @user.nickname
   - if @user.avatar
-    .middlevertoffset
+    .middlevertoffset.avatar
       = image_tag @user.avatar.thumb_url
 
   .actions

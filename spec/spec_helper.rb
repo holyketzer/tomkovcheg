@@ -43,4 +43,8 @@ RSpec.configure do |config|
   config.order = "random"
 
   config.include FactoryGirl::Syntax::Methods
+
+  # acceptance
+  OmniAuth.config.test_mode = true
+  WebMock.disable_net_connect!(:allow_localhost => true)
 end
