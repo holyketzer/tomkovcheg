@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, path_names: { sign_in: 'login', sign_out: 'logout', registration: 'account', sign_up: 'register' }, controllers: { registrations: 'registrations' }
+  devise_for :users, path_names: { sign_in: 'login', sign_out: 'logout', registration: 'account', sign_up: 'register' }, controllers: { registrations: 'registrations', omniauth_callbacks: 'omniauth_callbacks' }
   devise_scope :user do
     get 'account', to: 'registrations#show'
   end

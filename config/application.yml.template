@@ -1,0 +1,7 @@
+development:
+  FB_APP_ID: 000000000000000
+  FB_APP_SECRET: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+  VK_APP_ID: 0000000
+  VK_APP_SECRET: aaaaaaaaaaaaaaaaaaaa
+
+production:

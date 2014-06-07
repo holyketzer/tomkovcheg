@@ -33,6 +33,11 @@ gem 'bootstrap-wysihtml5-rails' # wysiwyg editor
 gem 'kaminari' # pagination
 gem 'gretel' # breadcrumbs
 gem 'devise' # authentication
+gem 'omniauth-vkontakte', git: 'git://github.com/mamantoha/omniauth-vkontakte.git' # should be 1.3.3 but it hasn't been released yet
+gem 'figaro' # Keep secrets in separate config
+
+#gem 'open-uri', require: false
+gem 'open_uri_redirections', require: false # for handling tricky redirects in social network avatar's urls
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
