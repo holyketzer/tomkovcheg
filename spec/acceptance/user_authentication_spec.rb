@@ -53,4 +53,40 @@ feature 'User authentication', %q{
       end
     end
   end
+
+  describe 'OAuth association' do
+    context 'signed up with Facebook' do
+      let!(:user) { create(:user) }
+      let!(:fb_auth) { OmniAuth::AuthHash.new(provider: 'facebook', uid: '123456') }
+      let!(:vk_auth) { OmniAuth::AuthHash.new(provider: 'vkontakte', uid: '789400') }
+
+      before do
+        OmniAuth.config.add_mock(vk_auth.provider, { uid: vk_auth.uid, info: { }, extra: { raw_info: {} } })
+        user.create_authentication(fb_auth)
+        login_as(user)
+        visit account_path
+      end
+
+      scenario 'user add Vkontake account' do
+        click_on 'Привязать к Vkontakte'
+
+        expect(current_path).to eq(account_path)
+        expect(page).to have_content 'Ваш профиль привязан к аккаунту Vkontakte'
+        expect(page).to_not have_link 'Привязать к Vkontakte'
+      end
+
+      context 'Vkontakte profile assigned with another user' do
+        let!(:vk_user) { create(:user) }
+        before { vk_user.create_authentication(vk_auth) }
+
+        scenario 'user can not add Vkontakte profile' do
+          click_on 'Привязать к Vkontakte'
+
+          expect(current_path).to eq(account_path)
+          expect(page).to have_content 'Этот аккаунт Vkontakte уже связан с другим профилем'
+          expect(page).to have_link 'Привязать к Vkontakte'
+        end
+      end
+    end
+  end
 end

@@ -23,7 +23,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       else
         flash[:error] = t('devise.omniauth_callbacks.not_associated', provider: provider)
       end
-      redirect_to profile_path
+      redirect_to account_path
     else
       @user = User.find_by_oauth(auth)
       if @user && @user.persisted?

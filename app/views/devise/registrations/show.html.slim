@@ -6,5 +6,8 @@
     .middlevertoffset.avatar
       = image_tag @user.avatar.thumb_url
 
-  .actions
-    = link_to 'Редактировать', edit_user_registration_path, class: 'btn btn-warning'
+  .middlevertoffset.associate-account
+    =' link_to 'Редактировать', edit_user_registration_path, class: 'btn btn-warning'
+    - User.omniauth_providers.each do |provider|
+      - unless current_user.authentications.any? { |a| a.provider == provider.to_s }
+        =' link_to t('devise.buttons.associate_account', provider: provider.to_s.titleize), user_omniauth_authorize_path(provider), class: 'btn btn-primary'
