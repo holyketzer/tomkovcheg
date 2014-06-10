@@ -18,6 +18,9 @@ class RegistrationsController < Devise::RegistrationsController
     super do |user|
       auth = session['devise.oauth']
       user.create_authentication(auth) if auth
+
+      avatar_id = session['devise.avatar_id']
+      user.update!(avatar: Image.find(avatar_id)) if avatar_id
     end
   end
 

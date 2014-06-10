@@ -1,5 +1,13 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  #before_action :oauth_callback
+  def facebook
+    auth = request.env['omniauth.auth']
+
+    auth.info[:nickname] = nil if auth.info[:nickname].to_s.empty?
+    auth.info[:nickname] ||= "#{auth.info[:first_name]} #{auth.info[:last_name]}"
+    auth.info[:nickname]= nil
+
+    oauth_callback(auth)
+  end
 
   def vkontakte
     auth = request.env['omniauth.auth']

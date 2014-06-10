@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, omniauth_providers: [:vkontakte]
+         :omniauthable, omniauth_providers: [:vkontakte, :facebook]
 
   def self.find_by_oauth(auth)
     authentication = Authentication.where(provider: auth.provider, uid: auth.uid.to_s).first

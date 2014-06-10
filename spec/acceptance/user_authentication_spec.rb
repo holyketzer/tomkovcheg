@@ -21,10 +21,7 @@ feature 'User authentication', %q{
       expect(current_path).to eq(root_path)
       expect(page).to have_content 'Вход в систему выполнен с учётной записью из Vkontakte'
 
-      visit account_path
-      within '.avatar' do
-        expect(page).to have_image 'avatar.jpg'
-      end
+      check_avatar 'avatar.jpg'
     end
 
     context 'without full user information' do
@@ -50,6 +47,52 @@ feature 'User authentication', %q{
         visit new_user_session_path
         click_on 'Войти через Vkontakte'
         expect(page).to have_content 'Вход в систему выполнен с учётной записью из Vkontakte'
+      end
+
+      scenario 'facebook' do
+        user = build(:user)
+        OmniAuth.config.add_mock(:facebook, {uid: '12345', info: { email: user.email, image: 'http://www.imagehost.test/avatar.jpg' }})
+
+        visit new_user_session_path
+        click_on 'Войти через Facebook'
+
+        expect(current_path).to eq(new_user_registration_path)
+        expect(page).to have_content 'Пожалуйста, завершите регистрацию'
+        within '.registration' do
+          expect(find_field('Email').value).to eq(user.email)
+        end
+
+        fill_in_user_fields(user) { click_on 'Зарегистрироваться' }
+
+        within '#loginbox' do
+          expect(current_path).to eq(root_path)
+          expect(page).to have_content user.email
+          expect(page).to have_link 'Профиль'
+        end
+
+        check_avatar 'avatar.jpg'
+      end
+
+      context 'with http to https avatar url redirect' do
+        let(:avatar_url) { 'http://www.imagehost.com/avatar.jpg' }
+        let(:redirection_url) { 'https://cdn.imagehost.com/redirected_avatar.jpg' }
+
+        before do
+          stub_request(:get, avatar_url).to_return(status: 302, headers: { 'Location' => redirection_url, 'Content-Type' => 'image/jpeg' })
+          stub_request(:get, redirection_url).to_return(body: File.new(build(:image_path)), status: 200)
+        end
+
+        scenario 'facebook' do
+          user = build(:user)
+          OmniAuth.config.add_mock(:facebook, {uid: '12345', info: { email: user.email, image: avatar_url }})
+
+          visit new_user_session_path
+          click_on 'Войти через Facebook'
+
+          fill_in_user_fields(user) { click_on 'Зарегистрироваться' }
+
+          check_avatar 'redirected_avatar.jpg'
+        end
       end
     end
   end
@@ -88,5 +131,14 @@ feature 'User authentication', %q{
         end
       end
     end
+  end
+
+  private
+
+  def check_avatar(avatar_file_name)
+    visit account_path
+      within '.avatar' do
+        expect(page).to have_image avatar_file_name
+      end
   end
 end

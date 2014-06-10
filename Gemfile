@@ -34,6 +34,7 @@ gem 'kaminari' # pagination
 gem 'gretel' # breadcrumbs
 gem 'devise' # authentication
 gem 'omniauth-vkontakte', git: 'git://github.com/mamantoha/omniauth-vkontakte.git' # should be 1.3.3 but it hasn't been released yet
+gem 'omniauth-facebook'
 gem 'figaro' # Keep secrets in separate config
 
 #gem 'open-uri', require: false
