@@ -35,6 +35,9 @@ ru:
         published: 'Опубликована'
         images: 'Иллюстрации'
         articles_count: 'Статей'
+      authentication:
+        uid: ID
+        provider: Соц. сеть
       category:
         title: 'Название'
         description: 'Описание'

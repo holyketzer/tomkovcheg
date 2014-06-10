@@ -6,6 +6,17 @@
     .middlevertoffset.avatar
       = image_tag @user.avatar.thumb_url
 
+  table.table.authentications.middlevertoffset
+    - model_class = Authentication
+    thead
+      th = model_class.human_attribute_name(:provider)
+      th = model_class.human_attribute_name(:uid)
+    tbody
+      - current_user.authentications.each do |a|
+        tr
+          td = a.provider
+          td = a.uid
+
   .middlevertoffset.associate-account
     =' link_to 'Редактировать', edit_user_registration_path, class: 'btn btn-warning'
     - User.omniauth_providers.each do |provider|

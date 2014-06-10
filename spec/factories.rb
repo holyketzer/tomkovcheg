@@ -31,4 +31,9 @@ FactoryGirl.define do
     sequence(:password) { |n| "password_#{n}" }
     password_confirmation { |u| u.password }
   end
+
+  factory :authentication do
+    sequence(:uid) { |n| n + 10000 }
+    sequence(:provider) { |n| ['facebook', 'vkontakte'][n % 2] }
+  end
 end

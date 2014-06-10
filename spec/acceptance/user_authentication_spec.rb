@@ -133,6 +133,53 @@ feature 'User authentication', %q{
     end
   end
 
+  describe 'user account' do
+    let!(:user) { create(:user, authentications: [auth]) }
+    before do
+      login_as user
+      visit account_path
+    end
+
+    context 'associated with Facebook' do
+      let!(:auth) { create(:authentication, provider: 'facebook') }
+
+      scenario 'user can see Facebook account details' do
+        within '.authentications' do
+          expect(page).to have_content 'Соц. сеть'
+          expect(page).to have_content 'ID'
+
+          expect(page).to have_content auth.provider
+          expect(page).to have_content auth.uid
+        end
+      end
+
+      scenario 'user can associate account' do
+        within '.associate-account' do
+          expect(page).to have_link 'Привязать к Vkontakte'
+          expect(page).to_not have_link 'Привязать к Facebook'
+        end
+      end
+    end
+
+    context 'associated with Vkontakte' do
+      let!(:auth) { create(:authentication, provider: 'vkontakte') }
+
+      scenario 'user can see Facebook account details' do
+        within '.authentications' do
+          expect(page).to have_content auth.provider
+          expect(page).to have_content auth.uid
+        end
+      end
+
+      scenario 'user can associate account' do
+        within '.associate-account' do
+          expect(page).to_not have_link 'Привязать к Vkontakte'
+          expect(page).to have_link 'Привязать к Facebook'
+        end
+      end
+    end
+  end
+
   private
 
   def check_avatar(avatar_file_name)
