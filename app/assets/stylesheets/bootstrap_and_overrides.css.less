@@ -6,14 +6,14 @@
 @iconWhiteSpritePath: image-url("twitter/bootstrap/glyphicons-halflings-white.png");
 
 // Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
-// @fontAwesomeEotPath: asset-url("fontawesome-webfont.eot");
-// @fontAwesomeEotPath_iefix: asset-url("fontawesome-webfont.eot?#iefix");
-// @fontAwesomeWoffPath: asset-url("fontawesome-webfont.woff");
-// @fontAwesomeTtfPath: asset-url("fontawesome-webfont.ttf");
-// @fontAwesomeSvgPath: asset-url("fontawesome-webfont.svg#fontawesomeregular");
+@fontAwesomeEotPath: asset-url("fontawesome-webfont.eot");
+@fontAwesomeEotPath_iefix: asset-url("fontawesome-webfont.eot?#iefix");
+@fontAwesomeWoffPath: asset-url("fontawesome-webfont.woff");
+@fontAwesomeTtfPath: asset-url("fontawesome-webfont.ttf");
+@fontAwesomeSvgPath: asset-url("fontawesome-webfont.svg#fontawesomeregular");
 
 // Font Awesome
-// @import "fontawesome/font-awesome";
+@import "fontawesome/font-awesome";
 
 // Glyphicons
 @import "twitter/bootstrap/sprites.less";
@@ -46,7 +46,7 @@ input, textarea { width: 500px; }
   input {
     padding: 1px 6px;
     margin-bottom: 5px;
-    width: 95%;
+    width: 92%;
   }
   .controls {
     margin-left: 0px;
@@ -65,9 +65,14 @@ input, textarea { width: 500px; }
     margin: 0px;
   }
   input.btn {
-    margin-top: 5px;
     width: 100%;
-    margin-left: 2px;
+  }
+  .social.btn {
+    width: 35%;
+    height: 16px;
+  }
+  .fa-lg {
+    vertical-align: 0%;
   }
 }
 

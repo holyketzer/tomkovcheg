@@ -10,6 +10,10 @@
         = f.input :email
         = f.input :password
         = f.submit 'Войти', class: 'btn'
+        =' link_to user_omniauth_authorize_path(:vkontakte), class: 'btn social'
+          i.fa.fa-lg.fa-vk
+        = link_to user_omniauth_authorize_path(:facebook), class: 'btn social'
+          i.fa.fa-lg.fa-facebook
       .smalloffset
         = link_to 'Регистрация', new_user_registration_path
       .smalloffset

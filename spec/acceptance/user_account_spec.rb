@@ -12,8 +12,13 @@ feature 'User account', %q{
 
   context 'unauthenticated user' do
     scenario 'can login or create account' do
-      expect(page).to have_submit_button 'Войти'
-      expect(page).to have_link 'Регистрация'
+      within '#loginbox' do
+        expect(page).to have_submit_button 'Войти'
+        expect(page).to have_link 'Регистрация'
+
+        expect(page).to have_link '', href: user_omniauth_authorize_path(:vkontakte)
+        expect(page).to have_link '', href: user_omniauth_authorize_path(:facebook)
+      end
     end
 
     scenario 'creates new account' do
