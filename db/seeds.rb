@@ -25,3 +25,55 @@ categories.each do |category_hash|
 
   Rails.logger.debug "Category #{category.title} was initialized"
 end
+
+# Roles and permissions
+# You sould execute RolePermission.delete_all if you want to refill the role permissions
+
+user_permissions = [
+  { name: 'Просмотр cтатей', action: :read, subject: 'Article' },
+  { name: 'Профиль', action: :manage, subject: :account }
+]
+
+moderator_permissions = user_permissions + [
+  { name: 'Статьи', action: :manage, subject: 'Article' }
+]
+
+admin_permissions = moderator_permissions + [
+  { name: 'Категории', action: :manage, subject: 'Category' },
+  { name: 'Пользователи', action: :manage, subject: 'User' },
+  { name: 'Права', action: :manage, subject: 'Permission' }
+]
+
+all_permissions = admin_permissions
+
+# Recreate permissions
+all_permissions.each do |permission|
+  name = permission.delete(:name)
+  p = Permission.where(permission).first
+  if p.present?
+    p.update(name: name)
+  else
+    Permission.create!(permission.merge(name: name))
+  end
+end
+
+roles = [
+  { name: 'admin' },
+  { name: 'moderator' },
+  { name: 'user' }
+]
+
+roles.each do |role_hash|
+  role = Role.where(role_hash).first
+  role = Role.create!(role_hash) unless role.present?
+  Rails.logger.debug "Role #{role.name}"
+
+  if role.permissions.empty?
+    permissions = eval("#{role.name}_permissions")
+    permissions.each do |permission_hash|
+      permission = Permission.where(permission_hash).first
+      role.permissions << permission
+      Rails.logger.debug "   granted permission #{permission.name}"
+    end
+  end
+end

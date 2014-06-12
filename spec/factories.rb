@@ -30,6 +30,16 @@ FactoryGirl.define do
     sequence(:nickname) { |n| "user#{n}" }
     sequence(:password) { |n| "password_#{n}" }
     password_confirmation { |u| u.password }
+
+    factory :admin do
+      sequence(:email) { |n| "admin-#{n}@tomkovcheg.ru" }
+      role Role.admin
+    end
+
+    factory :moderator do
+      sequence(:email) { |n| "moderator-#{n}@test.com" }
+      role Role.moderator
+    end
   end
 
   factory :authentication do

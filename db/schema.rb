@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140607180501) do
+ActiveRecord::Schema.define(version: 20140614163718) do
 
   create_table "articles", force: true do |t|
     t.integer  "category_id"
@@ -54,6 +54,29 @@ ActiveRecord::Schema.define(version: 20140607180501) do
 
   add_index "images", ["imageable_id", "imageable_type"], name: "index_images_on_imageable_id_and_imageable_type"
 
+  create_table "permissions", force: true do |t|
+    t.string   "name"
+    t.string   "action"
+    t.string   "subject"
+    t.integer  "subject_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "role_permissions", force: true do |t|
+    t.integer  "role_id"
+    t.integer  "permission_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "role_permissions", ["permission_id"], name: "index_role_permissions_on_permission_id"
+  add_index "role_permissions", ["role_id"], name: "index_role_permissions_on_role_id"
+
+  create_table "roles", force: true do |t|
+    t.string "name"
+  end
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -68,9 +91,11 @@ ActiveRecord::Schema.define(version: 20140607180501) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "nickname"
+    t.integer  "role_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["role_id"], name: "index_users_on_role_id"
 
 end

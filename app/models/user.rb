@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_many :authentications
   has_one :avatar, class_name: 'Image', as: :imageable
+  belongs_to :role
+  has_many :permissions, through: :role
 
   validates :nickname, presence: true
   validates :nickname, uniqueness: { case_sensitive: false }
@@ -12,6 +14,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:vkontakte, :facebook]
+
+  before_create { |user| user.role = Role.user unless user.role }
 
   def self.find_by_oauth(auth)
     authentication = Authentication.where(provider: auth.provider, uid: auth.uid.to_s).first
@@ -44,5 +48,9 @@ class User < ActiveRecord::Base
       create_authentication(auth)
       true
     end
+  end
+
+  def admin?
+    role == Role.admin
   end
 end

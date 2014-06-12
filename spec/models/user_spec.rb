@@ -14,6 +14,8 @@ describe User do
   describe 'associations' do
     it { should have_one(:avatar) }
     it { should have_many(:authentications) }
+    it { should belong_to(:role) }
+    it { should have_many(:permissions) }
   end
 
   describe 'OmniAuth authentications' do

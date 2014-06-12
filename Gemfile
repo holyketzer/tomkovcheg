@@ -36,6 +36,7 @@ gem 'devise' # authentication
 gem 'omniauth-vkontakte', git: 'git://github.com/mamantoha/omniauth-vkontakte.git' # should be 1.3.3 but it hasn't been released yet
 gem 'omniauth-facebook'
 gem 'figaro' # Keep secrets in separate config
+gem 'cancancan', '~> 1.8' # authorization
 
 #gem 'open-uri', require: false
 gem 'open_uri_redirections', require: false # for handling tricky redirects in social network avatar's urls
