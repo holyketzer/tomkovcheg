@@ -6,8 +6,13 @@ feature 'Admin can manage categories', %q{
   I want to be able to manage categories
  } do
 
+  let(:admin) { create(:admin) }
   let(:path) { categories_path }
   let!(:category) { create(:category) }
+
+  background do
+    login_as admin
+  end
 
   scenario 'Admin views categories list' do
     visit path

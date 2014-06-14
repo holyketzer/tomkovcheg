@@ -27,10 +27,11 @@ categories.each do |category_hash|
 end
 
 # Roles and permissions
-# You sould execute RolePermission.delete_all if you want to refill the role permissions
+# You should execute RolePermission.delete_all if you want to refill the role permissions
 
 user_permissions = [
-  { name: 'Просмотр cтатей', action: :read, subject: 'Article' },
+  { name: 'Чтение cтатьи', action: :show, subject: 'Article' },
+  { name: 'Просмотр категории', action: :show, subject: 'Category' },
   { name: 'Профиль', action: :manage, subject: :account }
 ]
 
@@ -62,6 +63,8 @@ roles = [
   { name: 'moderator' },
   { name: 'user' }
 ]
+
+RolePermission.delete_all if Rails.env.test?
 
 roles.each do |role_hash|
   role = Role.where(role_hash).first

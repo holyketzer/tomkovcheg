@@ -1,10 +1,12 @@
 require 'spec_helper'
 
 shared_examples_for 'guest' do
-  #it { should_not be_able_to :manage, :all }
-  #it { should_not be_able_to :read, :all }
+  it { should_not be_able_to :manage, :all }
+  it { should_not be_able_to :read, :all }
 
-  it { should be_able_to :read, Article }
+  it { should be_able_to :show, Article }
+  it { should_not be_able_to :index, Article }
+  it { should be_able_to :show, Category }
 end
 
 shared_examples_for 'user' do

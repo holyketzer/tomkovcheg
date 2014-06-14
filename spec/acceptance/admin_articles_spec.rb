@@ -5,9 +5,14 @@ feature 'Admin can manage articles', %q{
   As an admin
   I want to be able to manage articles
  } do
+  let(:admin) { create(:admin) }
   let(:path) { articles_path }
   let(:image) { create(:image) }
   let!(:article) { create(:article, images: [image]) }
+
+  background do
+    login_as admin
+  end
 
   scenario 'Admin views articles list' do
     visit path

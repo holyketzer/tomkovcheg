@@ -44,6 +44,8 @@ RSpec.configure do |config|
   config.order = "random"
 
   config.include FactoryGirl::Syntax::Methods
+  config.include Devise::TestHelpers, type: :controller
+  config.extend DeviseMacros, type: :controller
 
   # acceptance
   OmniAuth.config.test_mode = true

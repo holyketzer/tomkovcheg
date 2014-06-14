@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe CategoriesController do
+  login_as_admin
+
   describe 'GET show' do
     it 'returns pusblished and approved articles' do
       category = create(:category)

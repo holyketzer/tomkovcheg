@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe ArticlesController do
+  login_as_admin
+
   describe 'GET index' do
     it 'returns all articles' do
       article = create(:article)

@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   respond_to :html
   inherit_resources
+  authorize_resource
 
   layout 'two_columns', only: [:new, :edit, :index]
 

@@ -31,6 +31,7 @@ class Ability
   end
 
   def guest_abilities
-    can :read, Article
+    can :show, Article
+    can :show, Category
   end
 end

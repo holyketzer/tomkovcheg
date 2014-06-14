@@ -18,6 +18,7 @@ ru:
       not_found_in_database: "Неверный email или пароль."
       timeout: "Ваш сеанс закончился. Пожалуйста, войдите в систему снова."
       unauthenticated: "Вам необходимо войти в систему или зарегистрироваться."
+      unauthorized: "У вас нет прав доступа к этой странице"
       unconfirmed: "Вы должны подтвердить Вашу учётную запись."
     mailer:
       confirmation_instructions:
