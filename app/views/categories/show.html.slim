@@ -1,20 +1,21 @@
 - model_class = Category
 - breadcrumb :category, @category
 
-div id="category-#{@category.id}"
-  .smallvertoffset
-    .header = @category.title
+- if can? :modify, @category
+  div id="category-#{@category.id}"
+    .smallvertoffset
+      .header = @category.title
 
-    .area
-      .smallvertoffset = @category.description if @category.description
-      .smallvertoffset = image_tag @category.image.thumb_url if @category.image
+      .area
+        .smallvertoffset = @category.description if @category.description
+        .smallvertoffset = image_tag @category.image.thumb_url if @category.image
 
-      .actions
-        = link_to t('helpers.links.back'), categories_path, class: 'btn'
-        '
-        = link_to t('helpers.links.edit'), edit_category_path(@category), class: 'btn'
-        '
-        = link_to t('helpers.links.destroy'), category_path(@category), method: 'delete', data: { confirm: t('helpers.links.confirm') }, class: 'btn btn-danger'
+        .actions
+          = link_to t('helpers.links.back'), categories_path, class: 'btn'
+          '
+          = link_to t('helpers.links.edit'), edit_category_path(@category), class: 'btn'
+          '
+          = link_to t('helpers.links.destroy'), category_path(@category), method: 'delete', data: { confirm: t('helpers.links.confirm') }, class: 'btn btn-danger'
 
 .articles
   - @articles.each do |article|
