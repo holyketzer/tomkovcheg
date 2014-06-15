@@ -5,9 +5,14 @@ Rails.application.routes.draw do
   end
 
   root to: 'site#index'
+  get 'manage', to: 'site#manage'
 
   resources :categories
   resources :articles
 
   resources :images, only: :destroy
+
+  resources :roles, only: [:index, :show] do
+    resources :permissions, only: [:index, :create, :destroy]
+  end
 end

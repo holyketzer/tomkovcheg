@@ -59,6 +59,9 @@ html lang='en'
             = link_to category_path(6)
               .menuleft = 'Педагоги'
             a href = '#': .menuleft = 'История'
+            - if can? :manage, :site
+              = link_to manage_path
+                .menuleft = 'Управление'
 
         div id=center_column_style
           #breadcrumb

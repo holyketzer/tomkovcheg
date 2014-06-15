@@ -9,6 +9,13 @@ ru:
       cancel: 'Отмена'
       back: 'Назад'
       upload_image: 'Загрузить изображение'
+      turn_on: 'Включить'
+      turn_off: 'Выключить'
+  messages:
+    cant_change_role: 'Вы не можете изменить свою роль'
+    turned_on: 'Включено'
+    turned_off: 'Выключено'
+    cant_edit_admin_role: 'Невозможно изменить права для администратора'
   articles:
     index:
       title: 'Управление статьями'
@@ -45,6 +52,11 @@ ru:
         image: 'Картинка'
       image:
         source: 'Новая картинка'
+      permission:
+        name: 'Права'
+        status: 'Состояние'
+      role:
+        name: 'Название'
       user:
         avatar: 'Аватар'
         email: 'Email'

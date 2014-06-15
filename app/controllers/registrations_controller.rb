@@ -1,4 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
+  authorize_resource class: :account, only: [:edit, :update, :destroy]
+
   def new
     self.resource = User.new
     auth = session['devise.oauth']
@@ -26,6 +28,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def show
     if user_signed_in?
+      authorize! :show, :account
       @user = current_user
     else
       redirect_to new_user_session_path, notice: 'Для просмотра профиля необходимо войти'

@@ -1,0 +1,10 @@
+- model_class = Role
+.header = @role.name
+.area
+  ul
+    - @role.permissions.each do |permission|
+      li = permission.name
+
+  .actions
+    =' link_to t('helpers.links.edit'), role_permissions_path(@role), class: 'btn btn-primary'
+    = link_to t('helpers.links.back'), roles_path, class: 'btn'

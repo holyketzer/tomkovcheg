@@ -1,0 +1,20 @@
+- model_class = Permission
+.header = "Настройка роли #{parent.name.downcase}"
+.area
+  table.table.permissions
+    thead.list-header
+      tr
+        th = model_class.human_attribute_name(:name)
+        th = model_class.human_attribute_name(:status)
+        th
+    tbody
+      - @all_permissions.each do |p|
+        tr id="#{p.id}" class="#{collection.include?(p) ? 'success' : 'warning'}"
+          td = p.name
+          td = collection.include?(p) ? t('messages.turned_on') : t('messages.turned_off')
+          td
+            - if collection.include?(p)
+              = link_to t('helpers.links.turn_off'), role_permission_path(p, role_id: parent), method: :delete, class: 'btn btn-warning'
+            - else
+              = link_to t('helpers.links.turn_on'), role_permissions_path(role_id: parent, permission_id: p), method: :post, class: 'btn btn-success'
+  .actions = link_to t('helpers.links.back'), roles_path, class: 'btn'

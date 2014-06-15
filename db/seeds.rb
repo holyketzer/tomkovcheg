@@ -30,19 +30,19 @@ end
 # You should execute RolePermission.delete_all if you want to refill the role permissions
 
 user_permissions = [
-  { name: 'Чтение cтатьи', action: :show, subject: 'Article' },
-  { name: 'Просмотр категории', action: :show, subject: 'Category' },
-  { name: 'Профиль', action: :manage, subject: :account }
+  { name: 'Чтение cтатей', action: :show, subject: 'Article' },
+  { name: 'Просмотр статей в категориях', action: :show, subject: 'Category' },
+  { name: 'Управление профилем', action: :manage, subject: :account }
 ]
 
 moderator_permissions = user_permissions + [
-  { name: 'Статьи', action: :manage, subject: 'Article' }
+  { name: 'Упраление статьями', action: :manage, subject: 'Article' }
 ]
 
 admin_permissions = moderator_permissions + [
-  { name: 'Категории', action: :manage, subject: 'Category' },
-  { name: 'Пользователи', action: :manage, subject: 'User' },
-  { name: 'Права', action: :manage, subject: 'Permission' }
+  { name: 'Управление категориями', action: :manage, subject: 'Category' },
+  { name: 'Управление пользователями', action: :manage, subject: 'User' },
+  { name: 'Управление правами', action: :manage, subject: 'Permission' }
 ]
 
 all_permissions = admin_permissions
