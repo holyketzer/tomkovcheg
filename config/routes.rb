@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   get 'manage', to: 'site#manage'
 
   resources :categories
-  resources :articles
+  resources :articles do
+    resources :comments
+  end
 
   resources :images, only: :destroy
 

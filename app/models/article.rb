@@ -3,6 +3,7 @@ class Article < ActiveRecord::Base
 
   belongs_to :category
   has_many :images, as: :imageable
+  has_many :comments
 
   default_scope { order('created_at DESC') }
   scope :visible, -> { where(published: true) }

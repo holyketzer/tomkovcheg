@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_one :avatar, class_name: 'Image', as: :imageable
   belongs_to :role
   has_many :permissions, through: :role
+  has_many :comments
 
   validates :nickname, presence: true
   validates :nickname, uniqueness: { case_sensitive: false }

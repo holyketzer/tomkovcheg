@@ -41,7 +41,7 @@ RSpec.configure do |config|
   # order dependency and want to debug it, you can fix the order by providing
   # the seed, which is printed after each run.
   #     --seed 1234
-  config.order = "random"
+  config.order = 'random'
 
   config.include FactoryGirl::Syntax::Methods
   config.include Devise::TestHelpers, type: :controller
@@ -49,5 +49,9 @@ RSpec.configure do |config|
 
   # acceptance
   OmniAuth.config.test_mode = true
-  WebMock.disable_net_connect!(:allow_localhost => true)
+  WebMock.disable_net_connect!(allow_localhost: true)
+
+  config.before(:all) do
+    Tomkovcheg::Application.load_seed
+  end
 end

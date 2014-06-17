@@ -1,0 +1,19 @@
+.smallvertoffset
+  .single-header = 'Комментарии'
+
+- article.comments.each do |comment|
+  .smallvertoffset id="comment-#{comment.id}"
+    .leftheader
+      span =' 'Комментарий от: '
+      span: strong =' comment.user.nickname
+      span =' comment.created_at
+    .area = comment.body
+
+.smallvertoffset
+  .leftheader: strong = 'Оставьте свой комментарий:'
+  .area.new-comment
+    = form_for [article, Comment.new], html: { class: 'form-horizontal' } do |f|
+      = f.hidden_field :article_id, value: article.id
+      = f.label :body
+      = f.text_area :body, class: 'comment-field', rows: '5'
+      .actions = f.submit t('helpers.links.send'), class: 'btn btn-primary'

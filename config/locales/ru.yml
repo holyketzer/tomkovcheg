@@ -4,6 +4,7 @@ ru:
       new: 'Создать'
       save: 'Сохранить'
       edit: 'Изменить'
+      send: 'Отправить'
       destroy: 'Удалить'
       confirm: 'Вы уверены?'
       cancel: 'Отмена'
@@ -50,6 +51,8 @@ ru:
         description: 'Описание'
         priority: 'Приоритет'
         image: 'Картинка'
+      comment:
+        body: 'Комментарий'
       image:
         source: 'Новая картинка'
       permission:

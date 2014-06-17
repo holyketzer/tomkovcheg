@@ -16,6 +16,7 @@ describe User do
     it { should have_many(:authentications) }
     it { should belong_to(:role) }
     it { should have_many(:permissions) }
+    it { should have_many(:comments) }
   end
 
   describe 'OmniAuth authentications' do

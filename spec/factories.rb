@@ -46,4 +46,8 @@ FactoryGirl.define do
     sequence(:uid) { |n| n + 10000 }
     sequence(:provider) { |n| ['facebook', 'vkontakte'][n % 2] }
   end
+
+  factory :comment do
+    sequence(:body) { |n| "This is my very important comment #{n}" }
+  end
 end

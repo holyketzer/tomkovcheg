@@ -31,6 +31,7 @@ end
 
 user_permissions = [
   { name: 'Чтение cтатей', action: :show, subject: 'Article' },
+  { name: 'Возможность комментировать', action: :create, subject: 'Comment' },
   { name: 'Просмотр статей в категориях', action: :show, subject: 'Category' },
   { name: 'Управление профилем', action: :manage, subject: :account }
 ]
