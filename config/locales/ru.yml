@@ -68,6 +68,8 @@ ru:
         password_confirmation: 'Подтверждение пароля'
         current_password: 'Текущий пароль'
         remember_me: 'Запомнить меня'
+    models:
+      comment: 'Комментарий'
     successful:
       messages:
         article_saved: 'Статья сохранена'

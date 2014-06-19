@@ -8,11 +8,12 @@ feature 'User can post comments in articles', %q{
   let(:article) { create(:article) }
   let(:user) { create(:user) }
 
-  before { login_as user }
+  before do
+    login_as user
+    visit article_path(article)
+  end
 
   scenario 'user posts a comment' do
-    visit article_path(article)
-
     comment = build(:comment)
     within ".new-comment" do
       fill_in 'Комментарий', with: comment.body
@@ -26,5 +27,14 @@ feature 'User can post comments in articles', %q{
       expect(page).to have_content comment.user.nickname
       expect(page).to have_content comment.created_at
     end
+  end
+
+  scenario 'user posts an empty comment' do
+    within ".new-comment" do
+      click_on 'Отправить'
+    end
+
+    expect(current_path).to eq article_path(article)
+    expect(page).to have_content 'Комментарий не может быть пустым'
   end
 end

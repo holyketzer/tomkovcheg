@@ -6,7 +6,13 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
-    create! { article_path(@comment.article_id) }
+    create! do |format|
+      @comment.errors.each do |field, msg|
+        flash[:error] ||= ''
+        flash[:error] += "#{Comment.model_name.human} #{msg} "
+      end
+      format.html { redirect_to article_path(@comment.article_id) }
+    end
   end
 
   def comment_params
