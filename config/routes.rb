@@ -7,11 +7,12 @@ Rails.application.routes.draw do
   root to: 'site#index'
   get 'manage', to: 'site#manage'
 
-  resources :categories
   resources :articles do
-    resources :comments
+    resources :comments, only: [:create, :destroy]
   end
 
+  resources :categories
+  resources :galleries
   resources :images, only: :destroy
 
   resources :roles, only: [:index, :show] do

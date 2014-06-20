@@ -1,0 +1,18 @@
+- breadcrumb :edit_gallery, @gallery
+
+= simple_form_for @gallery, html: { class: 'form-horizontal', multipart: true } do |f|
+  = f.input :title
+  .controls
+    - @gallery.images[0..-2].each do |image|
+      .smallvertoffset id="image-#{image.id}"
+        = image_tag image.thumb_url
+        '
+        = link_to t('helpers.links.destroy'), image, method: :delete, data: { confirm: t('helpers.links.confirm') }, class: 'btn btn-mini btn-danger'
+  = f.label :images
+  .controls
+    = f.file_field :images, multiple: true, name: 'images[source][]'
+
+  .actions
+    = f.submit t('helpers.links.save'), class: 'btn btn-primary'
+    '
+    = link_to t('helpers.links.cancel'), galleries_path, class: 'btn'

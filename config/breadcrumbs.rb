@@ -11,6 +11,15 @@ crumb :article do |article|
   parent :category, article.category
 end
 
+crumb :galleries do
+  link 'Фотографии', galleries_path
+end
+
+crumb :gallery do |gallery|
+  link gallery.title, gallery_path(gallery)
+  parent :galleries
+end
+
 #region for admin
 
 crumb :categories do
@@ -37,6 +46,16 @@ crumb :edit_article do |article|
     link 'Новая статья', '#'
   end
   parent :articles
+end
+
+crumb :edit_gallery do |gallery|
+  if gallery && gallery.persisted?
+    link 'Редактирование', edit_gallery_path(gallery.id)
+    parent :gallery, gallery
+  else
+    link 'Новая фотогалерея', '#'
+    parent :galleries
+  end
 end
 
 #endregion

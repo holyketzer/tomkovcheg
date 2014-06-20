@@ -1,0 +1,20 @@
+- model_class = Gallery
+- breadcrumb :gallery, @gallery
+
+div id="gallery-#{@gallery.id}"
+  .header
+    = @gallery.title
+  .area
+    .middlevertoffset
+      - if @gallery.images.any?
+        #nanoGallery
+          - @gallery.images.each do |image|
+            a href=image.source_url data-ngthumb=image.thumb_url
+              = image_tag image.thumb_url
+    - if can? :modify, @gallery
+      .middlevertoffset
+        = link_to t('helpers.links.back'), galleries_path, class: 'btn'
+        '
+        = link_to t('helpers.links.edit'), edit_gallery_path(@gallery), class: 'btn btn-primary'
+        '
+        = link_to t('helpers.links.destroy'), gallery_path(@gallery), method: 'delete', data: { confirm: t('helpers.links.confirm') }, class: 'btn btn-danger'
