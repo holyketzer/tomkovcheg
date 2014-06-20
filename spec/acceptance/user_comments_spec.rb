@@ -26,10 +26,11 @@ feature 'User can post comments in articles', %q{
       expect(page).to have_content comment.body
       expect(page).to have_content comment.user.nickname
       expect(page).to have_content comment.created_at
+      expect(page).to_not have_link 'Удалить'
     end
   end
 
-  scenario 'user posts an empty comment' do
+  scenario 'user tries to post an empty comment' do
     within ".new-comment" do
       click_on 'Отправить'
     end

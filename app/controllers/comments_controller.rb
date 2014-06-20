@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   respond_to :html, only: [:create, :edit, :update, :destroy]
   inherit_resources
+  belongs_to :article
   authorize_resource
 
   def create
@@ -11,8 +12,12 @@ class CommentsController < ApplicationController
         flash[:error] ||= ''
         flash[:error] += "#{Comment.model_name.human} #{msg} "
       end
-      format.html { redirect_to article_path(@comment.article_id) }
+      format.html { redirect_to parent_url }
     end
+  end
+
+  def destroy
+    destroy! { parent_url }
   end
 
   def comment_params
