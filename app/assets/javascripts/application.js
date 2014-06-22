@@ -17,4 +17,5 @@
 //= require turbolinks
 //= require bootstrap-wysihtml5
 //= require bootstrap-wysihtml5/locales/ru-RU
+//= require jquery-fileupload/basic
 //= require_tree .

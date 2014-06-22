@@ -1,18 +1,9 @@
-/* Nanogallery */
-
-$(document).ready(function () {
-  $("#nanoGallery").nanoGallery({
-    thumbnailWidth: 200,
-    thumbnailHeight: 200,
-    colorScheme: 'light',
-    colorSchemeViewer: 'light',
-    thumbnailLabel: {
-      display: false
-    }
-  });
+// for turbolinks
+$(document).on('page:load', function(){
+  window['rangy'].initialized = false
 });
 
-/* Nanogallery bootstrap-wysihtml5 */
+/* bootstrap-wysihtml5 */
 
 $(document).ready(function(){
 
@@ -29,9 +20,4 @@ $(document).ready(function(){
     });
   });
 
-});
-
-// for turbolinks
-$(document).on('page:load', function(){
-  window['rangy'].initialized = false
 });

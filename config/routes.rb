@@ -9,11 +9,14 @@ Rails.application.routes.draw do
 
   resources :articles do
     resources :comments, only: [:create, :destroy]
+    resources :images, only: [:destroy]
   end
 
   resources :categories
-  resources :galleries
-  resources :images, only: :destroy
+
+  resources :galleries do
+    resources :images, only: [:create, :destroy]
+  end
 
   resources :roles, only: [:index, :show] do
     resources :permissions, only: [:index, :create, :destroy]

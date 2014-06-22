@@ -8,10 +8,14 @@ div id="gallery-#{@gallery.id}"
     .middlevertoffset
       - if @gallery.images.any?
         #nanoGallery
-          - @gallery.images.each do |image|
-            a href=image.source_url data-ngthumb=image.thumb_url
-              = image_tag image.thumb_url
+          = render @gallery.images
+
     - if can? :modify, @gallery
+      .middlevertoffset
+        = form_for [@gallery, Image.new] do |f|
+          = f.label :source, 'Добавить фотографии:'
+          = f.file_field :source, multiple: true, name: 'image[source]'
+
       .middlevertoffset
         = link_to t('helpers.links.back'), galleries_path, class: 'btn'
         '

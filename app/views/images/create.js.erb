@@ -1,0 +1,5 @@
+<% if @image.new_record? %>
+  alert("Failed to upload image: <%= j @image.errors.full_messages.join(', ').html_safe %>");
+<% else %>
+    $("#nanoGallery .nanoGalleryContainer").append("<div class='nanoGalleryThumbnailContainer' style='width: 200px; height: 200px; opacity: 1;'><%= j render(@image) %></div>");
+<% end %>
